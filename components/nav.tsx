@@ -89,7 +89,7 @@ export default function Nav() {
     <div className="bg-white">
       {/* Mobile menu */}
       <Transition.Root show={open} as={Fragment}>
-        <Dialog as="div" className="relative z-40 lg:hidden" onClose={setOpen}>
+        <Dialog as="div" className="relative z-90 lg:hidden" onClose={setOpen}>
           <Transition.Child
             as={Fragment}
             enter="transition-opacity ease-linear duration-300"
@@ -102,7 +102,7 @@ export default function Nav() {
             <div className="fixed inset-0 bg-black bg-opacity-25" />
           </Transition.Child>
 
-          <div className="fixed inset-0 z-40 flex">
+          <div className="fixed inset-0 z-90 flex">
             <Transition.Child
               as={Fragment}
               enter="transition ease-in-out duration-300 transform"
@@ -153,7 +153,7 @@ export default function Nav() {
                                 <img src={item.imageSrc} alt={item.imageAlt} className="object-cover object-center" />
                               </div>
                               <a href={item.href} className="mt-6 block text-sm font-medium text-gray-900">
-                                <span className="absolute inset-0 z-10" aria-hidden="true" />
+                                <span className="absolute inset-0 z-90" aria-hidden="true" />
                                 {item.name}
                               </a>
                               <p aria-hidden="true" className="mt-1 text-sm text-gray-500">
@@ -290,7 +290,7 @@ export default function Nav() {
                                       open
                                         ? 'border-indigo-600 text-indigo-600'
                                         : 'border-transparent text-gray-700 hover:text-gray-800',
-                                      'relative z-10 -mb-px flex items-center border-b-2 pt-px text-sm font-medium transition-colors duration-200 ease-out'
+                                      'relative z-40 -mb-px flex items-center border-b-2 pt-px text-sm font-medium transition-colors duration-200 ease-out'
                                     )}
                                   >
                                     {category.name}
@@ -306,7 +306,7 @@ export default function Nav() {
                                   leaveFrom="opacity-100"
                                   leaveTo="opacity-0"
                                 >
-                                  <Popover.Panel className="absolute inset-x-0 top-full text-sm text-gray-500">
+                                  <Popover.Panel className="absolute inset-x-0 top-full text-sm text-gray-500 z-40">
                                     {/* Presentational element used to render the bottom shadow, if we put the shadow on the actual panel it pokes out the top, so we use this shorter element to hide the top of the shadow */}
                                     <div className="absolute inset-0 top-1/2 bg-white shadow" aria-hidden="true" />
 
@@ -323,7 +323,7 @@ export default function Nav() {
                                                 />
                                               </div>
                                               <a href={item.href} className="mt-4 block font-medium text-gray-900">
-                                                <span className="absolute inset-0 z-10" aria-hidden="true" />
+                                                <span className="absolute inset-0 z-40" aria-hidden="true" />
                                                 {item.name}
                                               </a>
                                               <p aria-hidden="true" className="mt-1">
