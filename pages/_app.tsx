@@ -1,4 +1,3 @@
-// pages/_app.tsx
 import "../globals.css";
 import { ApolloProvider } from "@apollo/client";
 import { CartProvider } from "../lib/cartContext";

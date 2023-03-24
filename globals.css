@@ -1,3 +1,3 @@
-@tailwindcss base;
-@tailwindcss components;
-@tailwindcss ui;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
