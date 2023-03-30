@@ -8,33 +8,35 @@ import {
   XMarkIcon,
 } from '@heroicons/react/24/outline'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
+import Image from 'next/image'
+import Link from 'next/link'
 
 const currencies = ['CAD', 'USD', 'AUD', 'EUR', 'GBP']
 const navigation = {
   categories: [
     {
-      name: 'Women',
+      name: 'Store',
       featured: [
         {
-          name: 'New Arrivals',
+          name: 'Salves',
           href: '#',
           imageSrc: 'https://tailwindui.com/img/ecommerce-images/mega-menu-category-01.jpg',
           imageAlt: 'Models sitting back to back, wearing Basic Tee in black and bone.',
         },
         {
-          name: 'Basic Tees',
+          name: 'Oils',
           href: '#',
           imageSrc: 'https://tailwindui.com/img/ecommerce-images/mega-menu-category-02.jpg',
           imageAlt: 'Close up of Basic Tee fall bundle with off-white, ochre, olive, and black tees.',
         },
         {
-          name: 'Accessories',
+          name: 'Tea',
           href: '#',
           imageSrc: 'https://tailwindui.com/img/ecommerce-images/mega-menu-category-03.jpg',
           imageAlt: 'Model wearing minimalist watch with black wristband and white watch face.',
         },
         {
-          name: 'Carry',
+          name: 'Seasonal',
           href: '#',
           imageSrc: 'https://tailwindui.com/img/ecommerce-images/mega-menu-category-04.jpg',
           imageAlt: 'Model opening tan leather long wallet with credit card pockets and cash pouch.',
@@ -42,39 +44,39 @@ const navigation = {
       ],
     },
     {
-      name: 'Men',
+      name: 'Education',
       featured: [
         {
-          name: 'New Arrivals',
-          href: '#',
-          imageSrc: 'https://tailwindui.com/img/ecommerce-images/mega-menu-01-men-category-01.jpg',
+          name: 'E-book',
+          href: '/education/e-book',
+          imageSrc: '/book-in-grass.jpeg',
           imageAlt: 'Hats and sweaters on wood shelves next to various colors of t-shirts on hangers.',
         },
         {
-          name: 'Basic Tees',
-          href: '#',
-          imageSrc: 'https://tailwindui.com/img/ecommerce-images/mega-menu-01-men-category-02.jpg',
+          name: 'Course',
+          href: '/education/course',
+          imageSrc: '/smart-birds.jpeg',
           imageAlt: 'Model wearing light heather gray t-shirt.',
         },
-        {
-          name: 'Accessories',
-          href: '#',
-          imageSrc: 'https://tailwindui.com/img/ecommerce-images/mega-menu-01-men-category-03.jpg',
-          imageAlt:
-            'Grey 6-panel baseball hat with black brim, black mountain graphic on front, and light heather gray body.',
-        },
-        {
-          name: 'Carry',
-          href: '#',
-          imageSrc: 'https://tailwindui.com/img/ecommerce-images/mega-menu-01-men-category-04.jpg',
-          imageAlt: 'Model putting folded cash into slim card holder olive leather wallet with hand stitching.',
-        },
+        // {
+        //   name: 'Accessories',
+        //   href: '#',
+        //   imageSrc: 'https://tailwindui.com/img/ecommerce-images/mega-menu-01-men-category-03.jpg',
+        //   imageAlt:
+        //     'Grey 6-panel baseball hat with black brim, black mountain graphic on front, and light heather gray body.',
+        // },
+        // {
+        //   name: 'Carry',
+        //   href: '#',
+        //   imageSrc: 'https://tailwindui.com/img/ecommerce-images/mega-menu-01-men-category-04.jpg',
+        //   imageAlt: 'Model putting folded cash into slim card holder olive leather wallet with hand stitching.',
+        // },
       ],
     },
   ],
   pages: [
-    { name: 'Company', href: '#' },
-    { name: 'Stores', href: '#' },
+    { name: 'About', href: '#' },
+    { name: 'Contact', href: '#' },
   ],
 }
 
@@ -86,7 +88,7 @@ export default function Nav() {
   const [open, setOpen] = useState(false)
 
   return (
-    <div className="bg-white">
+    <div className="bg-white fixed top-0 z-[100] w-full">
       {/* Mobile menu */}
       <Transition.Root show={open} as={Fragment}>
         <Dialog as="div" className="relative z-90 lg:hidden" onClose={setOpen}>
@@ -128,9 +130,9 @@ export default function Nav() {
                 <Tab.Group as="div" className="mt-2">
                   <div className="border-b border-gray-200">
                     <Tab.List className="-mb-px flex space-x-8 px-4">
-                      {navigation.categories.map((category) => (
+
                         <Tab
-                          key={category.name}
+
                           className={({ selected }) =>
                             classNames(
                               selected ? 'border-indigo-600 text-indigo-600' : 'border-transparent text-gray-900',
@@ -138,9 +140,22 @@ export default function Nav() {
                             )
                           }
                         >
-                          {category.name}
+                          Store 
                         </Tab>
-                      ))}
+
+
+                        <Tab
+
+                          className={({ selected }) =>
+                            classNames(
+                              selected ? 'border-indigo-600 text-indigo-600' : 'border-transparent text-gray-900',
+                              'flex-1 whitespace-nowrap border-b-2 py-4 px-1 text-base font-medium'
+                            )
+                          }
+                        >
+                          Education 
+                        </Tab>
+
                     </Tab.List>
                   </div>
                   <Tab.Panels as={Fragment}>
@@ -150,7 +165,7 @@ export default function Nav() {
                           {category.featured.map((item) => (
                             <div key={item.name} className="group relative">
                               <div className="aspect-w-1 aspect-h-1 overflow-hidden rounded-md bg-gray-100 group-hover:opacity-75">
-                                <img src={item.imageSrc} alt={item.imageAlt} className="object-cover object-center" />
+                                <Image src={item.imageSrc} alt={item.imageAlt} className="object-cover object-center" height={100} width={100} />
                               </div>
                               <a href={item.href} className="mt-6 block text-sm font-medium text-gray-900">
                                 <span className="absolute inset-0 z-90" aria-hidden="true" />
@@ -266,14 +281,16 @@ export default function Nav() {
                 <div className="flex h-16 items-center justify-between">
                   {/* Logo (lg+) */}
                   <div className="hidden lg:flex lg:flex-1 lg:items-center">
-                    <a href="#">
-                      <span className="sr-only">Your Company</span>
-                      <img
-                        className="h-8 w-auto"
-                        src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                    <Link href="/">
+                      <span className="sr-only">Pine Ridge Herbals</span>
+                      <Image
+                        className="h-14 w-auto"
+                        src="/logo-notext.png"
                         alt=""
+                        width={300}
+                        height={100}
                       />
-                    </a>
+                    </Link>
                   </div>
 
                   <div className="hidden h-full lg:flex">
