@@ -4,12 +4,12 @@ import {
   Bars3Icon,
   MagnifyingGlassIcon,
   QuestionMarkCircleIcon,
-  ShoppingBagIcon,
   XMarkIcon,
 } from '@heroicons/react/24/outline'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import Image from 'next/image'
 import Link from 'next/link'
+import Cart from './cart'
 
 const currencies = ['CAD', 'USD', 'AUD', 'EUR', 'GBP']
 const navigation = {
@@ -58,19 +58,6 @@ const navigation = {
           imageSrc: '/smart-birds.jpeg',
           imageAlt: 'Model wearing light heather gray t-shirt.',
         },
-        // {
-        //   name: 'Accessories',
-        //   href: '#',
-        //   imageSrc: 'https://tailwindui.com/img/ecommerce-images/mega-menu-01-men-category-03.jpg',
-        //   imageAlt:
-        //     'Grey 6-panel baseball hat with black brim, black mountain graphic on front, and light heather gray body.',
-        // },
-        // {
-        //   name: 'Carry',
-        //   href: '#',
-        //   imageSrc: 'https://tailwindui.com/img/ecommerce-images/mega-menu-01-men-category-04.jpg',
-        //   imageAlt: 'Model putting folded cash into slim card holder olive leather wallet with hand stitching.',
-        // },
       ],
     },
   ],
@@ -79,7 +66,6 @@ const navigation = {
     { name: 'Contact', href: '#' },
   ],
 }
-
 function classNames(...classes:string[]) {
   return classes.filter(Boolean).join(' ')
 }
@@ -413,14 +399,7 @@ export default function Nav() {
 
                       {/* Cart */}
                       <div className="ml-4 flow-root lg:ml-8">
-                        <Link href="#" className="group -m-2 flex items-center p-2">
-                          <ShoppingBagIcon
-                            className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
-                            aria-hidden="true"
-                          />
-                          <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">0</span>
-                          <span className="sr-only">items in cart, view bag</span>
-                        </Link>
+                          <Cart />
                       </div>
                     </div>
                   </div>
