@@ -8,38 +8,24 @@ import Layout from "@/components/layout"
 const breadcrumbs = [{ id: 1, name: 'Men', href: '#' }]
 const filters = [
     {
-        id: 'color',
-        name: 'Color',
-        options: [
-            { value: 'white', label: 'White' },
-            { value: 'beige', label: 'Beige' },
-            { value: 'blue', label: 'Blue' },
-            { value: 'brown', label: 'Brown' },
-            { value: 'green', label: 'Green' },
-            { value: 'purple', label: 'Purple' },
-        ],
-    },
-    {
         id: 'category',
         name: 'Category',
         options: [
-            { value: 'new-arrivals', label: 'All New Arrivals' },
-            { value: 'tees', label: 'Tees' },
-            { value: 'crewnecks', label: 'Crewnecks' },
-            { value: 'sweatshirts', label: 'Sweatshirts' },
-            { value: 'pants-shorts', label: 'Pants & Shorts' },
+            { value: 'all', label: 'All Products'},
+            { value: 'salves', label: 'Salves' },
+            { value: 'oils', label: 'Oils' },
+            { value: 'teas', label: 'Teas' },
+            { value: 'seasonal', label: 'Seasonal' },
         ],
     },
     {
-        id: 'sizes',
-        name: 'Sizes',
+        id: 'use-case',
+        name: 'Use Cases',
         options: [
-            { value: 'xs', label: 'XS' },
-            { value: 's', label: 'S' },
-            { value: 'm', label: 'M' },
-            { value: 'l', label: 'L' },
-            { value: 'xl', label: 'XL' },
-            { value: '2xl', label: '2XL' },
+            { value: 'pain-relief', label: 'Pain Relief' },
+            { value: 'skin-irritation', label: 'Skin Irritation' },
+            { value: 'sleep', label: 'Sleep' },
+            { value: 'memory', label: 'Memory' },
         ],
     },
 ]
@@ -52,7 +38,7 @@ const products = [
         price: '$20',
         description: 'Plantain healing salve.',
         options: '2 sizes',
-        imageSrc: 'https://tailwindui.com/img/ecommerce-images/category-page-02-image-card-01.jpg',
+        imageSrc: '/salve-placeholder.png',
         imageAlt: 'place holder',
     },
     {
@@ -61,9 +47,9 @@ const products = [
         href: '/products/saint-sunshine',
         price: '$20',
         description: 'St John\'s wort moisturizing salve.',
-        options: 'Black',
-        imageSrc: 'https://tailwindui.com/img/ecommerce-images/category-page-02-image-card-02.jpg',
-        imageAlt: 'Front of plain black t-shirt.',
+        options: '2 sizes',
+        imageSrc: '/salve-placeholder.png',
+        imageAlt: 'place holder',
     },
     // More products...
 ]
