@@ -5,19 +5,19 @@ export default function Hero() {
   return (
     <div className="bg-gray-900 h-screen">
 
-      <div className="relative isolate overflow-hidden pt-14 h-full">
-        <div className='absolute inset-0 -z-10 h-screen w-full'>
+      <div className="relative isolate overflow-hidden pt-14 h-full flex items-center">
+        <div className='absolute inset-0 -z-10'>
           <video
             autoPlay
             loop
             muted
-            className='absolute w-auto min-w-full min-h-full max-w-none lg:w-screen h-screen '//h-screen
+            className=' w-auto min-h-screen min-w-screen max-w-none max-h-screen 2xl:w-screen'//h-screen
           >
             <source src='/trees-hero.mp4' type='video/mp4' />
             Your browser does not support the video tag.
           </video>
         </div>
-        <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56 border">
+        <div className="mx-auto max-w-2xl">
           <div className="hidden sm:mb-8 sm:flex sm:justify-center">
             <div className="relative rounded-full py-1 px-3 text-sm leading-6 text-gray-400 ring-1 ring-white/10 hover:ring-white/20">
               Coming soon: Pine Ridge University{' '}

@@ -1,15 +1,12 @@
-import "../globals.css";
+import "@/globals.css";
 import { ApolloProvider } from "@apollo/client";
-import { CartProvider } from "../lib/cartContext";
-import { apolloClient } from "../lib/shopify";
+import { CartProvider } from "@/lib/cartContext";
 
 const MyApp = ({ Component, pageProps }: any) => {
   return (
-    <ApolloProvider client={apolloClient}>
       <CartProvider>
         <Component {...pageProps} />
       </CartProvider>
-    </ApolloProvider>
   );
 };
 

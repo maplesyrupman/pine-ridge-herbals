@@ -1,8 +1,9 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    "./pages/*.tsx",
-    "./components/*.tsx",
+    "./**/*.tsx",
+    "./**/**/*.tsx",
+    "./**/**/**/*.tsx"
   ],
   theme: {
     extend: {},
@@ -11,5 +12,6 @@ module.exports = {
     // ...
     require('@tailwindcss/forms'),
     require('@tailwindcss/aspect-ratio'),
+    require('@tailwindcss/typography')
   ],
 }

@@ -19,25 +19,25 @@ const navigation = {
       featured: [
         {
           name: 'Salves',
-          href: '#',
+          href: '/categories/salves',
           imageSrc: 'https://tailwindui.com/img/ecommerce-images/mega-menu-category-01.jpg',
           imageAlt: 'Models sitting back to back, wearing Basic Tee in black and bone.',
         },
         {
           name: 'Oils',
-          href: '#',
+          href: '/categories/oils',
           imageSrc: 'https://tailwindui.com/img/ecommerce-images/mega-menu-category-02.jpg',
           imageAlt: 'Close up of Basic Tee fall bundle with off-white, ochre, olive, and black tees.',
         },
         {
           name: 'Tea',
-          href: '#',
+          href: '/categories/teas',
           imageSrc: 'https://tailwindui.com/img/ecommerce-images/mega-menu-category-03.jpg',
           imageAlt: 'Model wearing minimalist watch with black wristband and white watch face.',
         },
         {
           name: 'Seasonal',
-          href: '#',
+          href: '/categories/seasonal',
           imageSrc: 'https://tailwindui.com/img/ecommerce-images/mega-menu-category-04.jpg',
           imageAlt: 'Model opening tan leather long wallet with credit card pockets and cash pouch.',
         },
@@ -88,10 +88,10 @@ export default function Nav() {
   const [open, setOpen] = useState(false)
 
   return (
-    <div className="bg-white fixed top-0 z-[100] w-full">
+    <div className="bg-white fixed top-0 z-[10] w-full">
       {/* Mobile menu */}
-      <Transition.Root show={open} as={Fragment}>
-        <Dialog as="div" className="relative z-90 lg:hidden" onClose={setOpen}>
+      <Transition.Root show={open} as={Fragment} >
+        <Dialog as="div" className="relative z-[11] lg:hidden" onClose={setOpen}>
           <Transition.Child
             as={Fragment}
             enter="transition-opacity ease-linear duration-300"
@@ -167,10 +167,10 @@ export default function Nav() {
                               <div className="aspect-w-1 aspect-h-1 overflow-hidden rounded-md bg-gray-100 group-hover:opacity-75">
                                 <Image src={item.imageSrc} alt={item.imageAlt} className="object-cover object-center" height={100} width={100} />
                               </div>
-                              <a href={item.href} className="mt-6 block text-sm font-medium text-gray-900">
+                              <Link href={item.href} className="mt-6 block text-sm font-medium text-gray-900">
                                 <span className="absolute inset-0 z-90" aria-hidden="true" />
                                 {item.name}
-                              </a>
+                              </Link>
                               <p aria-hidden="true" className="mt-1 text-sm text-gray-500">
                                 Shop now
                               </p>
@@ -194,14 +194,14 @@ export default function Nav() {
 
                 <div className="space-y-6 border-t border-gray-200 py-6 px-4">
                   <div className="flow-root">
-                    <a href="#" className="-m-2 block p-2 font-medium text-gray-900">
+                    <Link href="#" className="-m-2 block p-2 font-medium text-gray-900">
                       Create an account
-                    </a>
+                    </Link>
                   </div>
                   <div className="flow-root">
-                    <a href="#" className="-m-2 block p-2 font-medium text-gray-900">
+                    <Link href="#" className="-m-2 block p-2 font-medium text-gray-900">
                       Sign in
-                    </a>
+                    </Link>
                   </div>
                 </div>
 
@@ -264,12 +264,12 @@ export default function Nav() {
               </form>
 
               <div className="flex items-center space-x-6">
-                <a href="#" className="text-sm font-medium text-white hover:text-gray-100">
+                <Link href="#" className="text-sm font-medium text-white hover:text-gray-100">
                   Sign in
-                </a>
-                <a href="#" className="text-sm font-medium text-white hover:text-gray-100">
+                </Link>
+                <Link href="#" className="text-sm font-medium text-white hover:text-gray-100">
                   Create an account
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -383,47 +383,49 @@ export default function Nav() {
                     </button>
 
                     {/* Search */}
-                    <a href="#" className="ml-2 p-2 text-gray-400 hover:text-gray-500">
+                    <Link href="#" className="ml-2 p-2 text-gray-400 hover:text-gray-500">
                       <span className="sr-only">Search</span>
                       <MagnifyingGlassIcon className="h-6 w-6" aria-hidden="true" />
-                    </a>
+                    </Link>
                   </div>
 
                   {/* Logo (lg-) */}
-                  <a href="#" className="lg:hidden">
-                    <span className="sr-only">Your Company</span>
-                    <img
-                      src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                  <Link href="#" className="lg:hidden">
+                    <span className="sr-only">Pine Ridge Herbals</span>
+                    <Image
+                      src="/logo-notext.png"
                       alt=""
-                      className="h-8 w-auto"
+                      className="h-12 w-auto"
+                      height={100}
+                      width={100}
                     />
-                  </a>
+                  </Link>
 
                   <div className="flex flex-1 items-center justify-end">
-                    <a href="#" className="hidden text-sm font-medium text-gray-700 hover:text-gray-800 lg:block">
+                    <Link href="#" className="hidden text-sm font-medium text-gray-700 hover:text-gray-800 lg:block">
                       Search
-                    </a>
+                    </Link>
 
                     <div className="flex items-center lg:ml-8">
                       {/* Help */}
-                      <a href="#" className="p-2 text-gray-400 hover:text-gray-500 lg:hidden">
+                      <Link href="#" className="p-2 text-gray-400 hover:text-gray-500 lg:hidden">
                         <span className="sr-only">Help</span>
                         <QuestionMarkCircleIcon className="h-6 w-6" aria-hidden="true" />
-                      </a>
-                      <a href="#" className="hidden text-sm font-medium text-gray-700 hover:text-gray-800 lg:block">
+                      </Link>
+                      <Link href="#" className="hidden text-sm font-medium text-gray-700 hover:text-gray-800 lg:block">
                         Help
-                      </a>
+                      </Link>
 
                       {/* Cart */}
                       <div className="ml-4 flow-root lg:ml-8">
-                        <a href="#" className="group -m-2 flex items-center p-2">
+                        <Link href="#" className="group -m-2 flex items-center p-2">
                           <ShoppingBagIcon
                             className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
                             aria-hidden="true"
                           />
                           <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">0</span>
                           <span className="sr-only">items in cart, view bag</span>
-                        </a>
+                        </Link>
                       </div>
                     </div>
                   </div>
