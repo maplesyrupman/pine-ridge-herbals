@@ -32,7 +32,7 @@ export default function MobileCategoryOptions({ mobileFiltersOpen, setMobileFilt
                         leaveFrom="translate-x-0"
                         leaveTo="translate-x-full"
                     >
-                        <Dialog.Panel className="relative ml-auto flex h-full w-full max-w-xs flex-col overflow-y-auto bg-white py-4 pb-6 shadow-xl">
+                        <Dialog.Panel className="relative ml-auto flex h-full w-full max-w-xs flex-col overflow-y-auto bg-background py-4 pb-6 shadow-xl">
                             <div className="flex items-center justify-between px-4">
                                 <h2 className="text-lg font-medium text-gray-900">Filters</h2>
                                 <button
@@ -71,7 +71,7 @@ export default function MobileCategoryOptions({ mobileFiltersOpen, setMobileFilt
                                                                     name={`${section.id}[]`}
                                                                     defaultValue={option.value}
                                                                     type="checkbox"
-                                                                    className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                                                                    className="h-4 w-4 rounded border-gray-300 text-primary focus:ring-indigo-500"
                                                                 />
                                                                 <label
                                                                     htmlFor={`${section.id}-${optionIdx}-mobile`}

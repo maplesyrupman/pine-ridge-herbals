@@ -6,7 +6,13 @@ module.exports = {
     "./**/**/**/*.tsx"
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        primary: 'rgb(var(--colour-primary))',
+        "primary-light": 'rgb(var(--colour-primary-light))',
+        background: 'rgb(var(--colour-background))'
+      }
+    },
   },
   plugins: [
     // ...

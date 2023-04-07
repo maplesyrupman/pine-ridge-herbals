@@ -84,7 +84,7 @@ export default function Example() {
                     {product.images.map((image) => (
                       <Tab
                         key={image.id}
-                        className="relative flex h-24 cursor-pointer items-center justify-center rounded-md bg-white text-sm font-medium uppercase text-gray-900 hover:bg-gray-50 focus:outline-none focus:ring focus:ring-opacity-50 focus:ring-offset-4"
+                        className="relative flex h-24 cursor-pointer items-center justify-center rounded-md bg-background text-sm font-medium uppercase text-gray-900 hover:bg-gray-50 focus:outline-none focus:ring focus:ring-opacity-50 focus:ring-offset-4"
                       >
                         {({ selected }) => (
                           <>
@@ -168,7 +168,7 @@ export default function Example() {
                   <div className="mt-10 flex">
                     <button
                       type="submit"
-                      className="flex max-w-xs flex-1 items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50 sm:w-full"
+                      className="flex max-w-xs flex-1 items-center justify-center rounded-md border border-transparent bg-primary px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50 sm:w-full"
                     >
                       Add to bag
                     </button>
@@ -189,7 +189,7 @@ export default function Example() {
                               <Disclosure.Button className="group relative flex w-full items-center justify-between py-6 text-left">
                                 <span
                                   className={classNames(
-                                    open ? 'text-indigo-600' : 'text-gray-900',
+                                    open ? 'text-primary' : 'text-gray-900',
                                     'text-sm font-medium'
                                   )}
                                 >

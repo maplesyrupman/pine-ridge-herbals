@@ -30,7 +30,7 @@ export default function DesktopCategoryOptions({setMobileFiltersOpen, filters}:P
                                                 name={`${section.id}[]`}
                                                 defaultValue={option.value}
                                                 type="checkbox"
-                                                className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                                                className="h-4 w-4 rounded border-gray-300 text-primary focus:ring-indigo-500"
                                             />
                                             <label htmlFor={`${section.id}-${optionIdx}`} className="ml-3 text-sm text-gray-600">
                                                 {option.label}

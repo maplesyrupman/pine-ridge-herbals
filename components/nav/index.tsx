@@ -74,7 +74,7 @@ export default function Nav() {
   const [open, setOpen] = useState(false)
 
   return (
-    <div className="bg-white fixed top-0 z-[10] w-full">
+    <div className="bg-background fixed top-0 z-[10] w-full">
       {/* Mobile menu */}
       <Transition.Root show={open} as={Fragment} >
         <Dialog as="div" className="relative z-[11] lg:hidden" onClose={setOpen}>
@@ -100,7 +100,7 @@ export default function Nav() {
               leaveFrom="translate-x-0"
               leaveTo="-translate-x-full"
             >
-              <Dialog.Panel className="relative flex w-full max-w-xs flex-col overflow-y-auto bg-white pb-12 shadow-xl">
+              <Dialog.Panel className="relative flex w-full max-w-xs flex-col overflow-y-auto bg-background pb-12 shadow-xl">
                 <div className="flex px-4 pt-5 pb-2">
                   <button
                     type="button"
@@ -121,7 +121,7 @@ export default function Nav() {
 
                           className={({ selected }) =>
                             classNames(
-                              selected ? 'border-indigo-600 text-indigo-600' : 'border-transparent text-gray-900',
+                              selected ? 'border-primary text-primary' : 'border-transparent text-gray-900',
                               'flex-1 whitespace-nowrap border-b-2 py-4 px-1 text-base font-medium'
                             )
                           }
@@ -134,7 +134,7 @@ export default function Nav() {
 
                           className={({ selected }) =>
                             classNames(
-                              selected ? 'border-indigo-600 text-indigo-600' : 'border-transparent text-gray-900',
+                              selected ? 'border-primary text-primary' : 'border-transparent text-gray-900',
                               'flex-1 whitespace-nowrap border-b-2 py-4 px-1 text-base font-medium'
                             )
                           }
@@ -261,7 +261,7 @@ export default function Nav() {
           </div>
 
           {/* Secondary navigation */}
-          <div className="bg-white">
+          <div className="bg-background">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
               <div className="border-b border-gray-200">
                 <div className="flex h-16 items-center justify-between">
@@ -289,7 +289,7 @@ export default function Nav() {
                               <>
                                 <div className="relative flex">
                                   <Popover.Button
-                                    className={`${open ? 'border-indigo-600 text-indigo-600':'border-transparent text-gray-700 hover:text-gray-800'} relative z-40 -mb-px flex items-center border-b-2 pt-px text-sm font-medium transition-colors duration-200 ease-out focus:outline-none`}
+                                    className={`${open ? 'border-primary text-primary':'border-transparent text-primary'} hover:border-primary relative z-40 -mb-px flex items-center border-b-2 pt-px text-sm font-medium transition-colors duration-200 ease-out focus:outline-none`}
                                   >
                                     {category.name}
                                   </Popover.Button>
@@ -306,9 +306,9 @@ export default function Nav() {
                                 >
                                   <Popover.Panel className="absolute inset-x-0 top-full text-sm text-gray-500 z-40">
                                     {/* Presentational element used to render the bottom shadow, if we put the shadow on the actual panel it pokes out the top, so we use this shorter element to hide the top of the shadow */}
-                                    <div className="absolute inset-0 top-1/2 bg-white shadow" aria-hidden="true" />
+                                    <div className="absolute inset-0 top-1/2 bg-background shadow" aria-hidden="true" />
 
-                                    <div className="relative bg-white">
+                                    <div className="relative bg-background">
                                       <div className="mx-auto max-w-7xl px-8">
                                         <div className="grid grid-cols-4 gap-y-10 gap-x-8 py-16">
                                           {category.featured.map((item) => (
@@ -340,13 +340,13 @@ export default function Nav() {
                         ))}
 
                         {navigation.pages.map((page) => (
-                          <a
+                          <Link
                             key={page.name}
                             href={page.href}
-                            className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800"
+                            className="flex items-center text-sm font-medium text-primary border-b-2 border-transparent hover:border-primary"
                           >
                             {page.name}
-                          </a>
+                          </Link>
                         ))}
                       </div>
                     </Popover.Group>
@@ -356,7 +356,7 @@ export default function Nav() {
                   <div className="flex flex-1 items-center lg:hidden">
                     <button
                       type="button"
-                      className="-ml-2 rounded-md bg-white p-2 text-gray-400"
+                      className="-ml-2 rounded-md bg-background p-2 text-gray-400"
                       onClick={() => setOpen(true)}
                     >
                       <span className="sr-only">Open menu</span>

@@ -19,7 +19,7 @@ const incentives = [
   
   export default function Guarantee() {
     return (
-      <div className="bg-gray-50">
+      <div className="bg-background">
         <div className="mx-auto max-w-7xl py-24 sm:px-2 sm:py-32 lg:px-4">
           <div className="mx-auto max-w-2xl px-4 lg:max-w-none">
             <div className="grid grid-cols-1 items-center gap-y-10 gap-x-16 lg:grid-cols-2">
