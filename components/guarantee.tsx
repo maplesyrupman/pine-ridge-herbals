@@ -35,7 +35,7 @@ const incentives = [
               </div>
               <div className="aspect-w-3 aspect-h-2 overflow-hidden rounded-lg bg-gray-100">
                 <img
-                  src="https://tailwindui.com/img/ecommerce-images/incentives-07-hero.jpg"
+                  src="/guarantee-placeholder.jpeg"
                   alt=""
                   className="object-cover object-center"
                 />

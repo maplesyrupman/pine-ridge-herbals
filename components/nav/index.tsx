@@ -26,19 +26,19 @@ const navigation = {
         {
           name: 'Oils',
           href: '/categories/oils',
-          imageSrc: 'https://tailwindui.com/img/ecommerce-images/mega-menu-category-02.jpg',
+          imageSrc: '/oil-placeholder.jpeg',
           imageAlt: 'Close up of Basic Tee fall bundle with off-white, ochre, olive, and black tees.',
         },
         {
           name: 'Tea',
           href: '/categories/teas',
-          imageSrc: 'https://tailwindui.com/img/ecommerce-images/mega-menu-category-03.jpg',
+          imageSrc: '/tea-placeholder.jpeg',
           imageAlt: 'Model wearing minimalist watch with black wristband and white watch face.',
         },
         {
           name: 'Seasonal',
           href: '/categories/seasonal',
-          imageSrc: 'https://tailwindui.com/img/ecommerce-images/mega-menu-category-04.jpg',
+          imageSrc: '/seasonal-placeholder.jpeg',
           imageAlt: 'Model opening tan leather long wallet with credit card pockets and cash pouch.',
         },
       ],
@@ -104,7 +104,7 @@ export default function Nav() {
                 <div className="flex px-4 pt-5 pb-2">
                   <button
                     type="button"
-                    className="-m-2 inline-flex items-center justify-center rounded-md p-2 text-gray-400"
+                    className="-m-2 inline-flex items-center justify-center rounded-md p-2 text-primary"
                     onClick={() => setOpen(false)}
                   >
                     <span className="sr-only">Close menu</span>
@@ -114,7 +114,7 @@ export default function Nav() {
 
                 {/* Links */}
                 <Tab.Group as="div" className="mt-2">
-                  <div className="border-b border-gray-200">
+                  <div className="border-b border-primary">
                     <Tab.List className="-mb-px flex space-x-8 px-4">
 
                         <Tab
@@ -171,9 +171,9 @@ export default function Nav() {
                 <div className="space-y-6 border-t border-gray-200 py-6 px-4">
                   {navigation.pages.map((page) => (
                     <div key={page.name} className="flow-root">
-                      <a href={page.href} className="-m-2 block p-2 font-medium text-gray-900">
+                      <Link href={page.href} className="-m-2 block p-2 font-medium text-gray-900">
                         {page.name}
-                      </a>
+                      </Link>
                     </div>
                   ))}
                 </div>
@@ -314,10 +314,12 @@ export default function Nav() {
                                           {category.featured.map((item) => (
                                             <div key={item.name} className="group relative">
                                               <div className="aspect-w-1 aspect-h-1 overflow-hidden rounded-md bg-gray-100 group-hover:opacity-75">
-                                                <img
+                                                <Image
                                                   src={item.imageSrc}
                                                   alt={item.imageAlt}
                                                   className="object-cover object-center"
+                                                  height={500}
+                                                  width={500}
                                                 />
                                               </div>
                                               <a href={item.href} className="mt-4 block font-medium text-gray-900">
@@ -371,7 +373,7 @@ export default function Nav() {
                   </div>
 
                   {/* Logo (lg-) */}
-                  <Link href="#" className="lg:hidden">
+                  <Link href="/" className="lg:hidden">
                     <span className="sr-only">Pine Ridge Herbals</span>
                     <Image
                       src="/logo-notext.png"

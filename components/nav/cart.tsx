@@ -5,20 +5,19 @@ import { Fragment } from "react"
 const products = [
     {
         id: 1,
-        name: 'Throwback Hip Bag',
-        href: '#',
-        color: 'Salmon',
-        imageSrc: 'https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-01.jpg',
-        imageAlt: 'Salmon orange fabric pouch with match zipper, gray zipper pull, and adjustable hip belt.',
+        name: 'Saint Sunshine',
+        href: '/products/saint-sunshine',
+        size: '9oz',
+        imageSrc: '/salve-placeholder.png',
+        imageAlt: 'Saint Sunshine salve',
     },
     {
         id: 2,
-        name: 'Medium Stuff Satchel',
-        href: '#',
-        color: 'Blue',
-        imageSrc: 'https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-02.jpg',
-        imageAlt:
-            'Front of satchel with blue canvas body, black straps and handle, drawstring top, and front zipper pouch.',
+        name: 'Peppermint Oil',
+        href: '/products/pepermint-oil',
+        size: '4oz',
+        imageSrc: '/oil-placeholder.jpeg',
+        imageAlt: 'Pepermint Oil extract',
     },
     // More products...
 ]
@@ -60,7 +59,7 @@ export default function Cart() {
                                         <h3 className="font-medium text-gray-900">
                                             <a href={product.href}>{product.name}</a>
                                         </h3>
-                                        <p className="text-gray-500">{product.color}</p>
+                                        <p className="text-gray-500">{product.size}</p>
                                     </div>
                                 </li>
                             ))}

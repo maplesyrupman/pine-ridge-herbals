@@ -31,7 +31,7 @@ const product = {
     }
   ],
   description: `
-    <p>The Zip Tote Basket is the perfect midpoint between shopping tote and comfy backpack. With convertible straps, you can hand carry, should sling, or backpack this convenient and spacious bag. The zip top and durable canvas construction keeps your goods protected for all-day use.</p>
+    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quidem architecto obcaecati ipsa illo veritatis facilis enim nobis accusantium repellendus. Rerum fugit nihil eum, distinctio tempora iste fuga, impedit harum sapiente debitis, optio cumque suscipit commodi sunt. Assumenda magnam labore, sequi in eligendi perferendis nobis facilis repellendus. Odio quis deleniti amet!</p>
   `,
   details: [
     {
@@ -48,12 +48,12 @@ const product = {
 const relatedProducts = [
   {
     id: 1,
-    name: 'Zip Tote Basket',
+    name: 'Saint Sunshine',
     color: 'White and black',
-    href: '#',
+    href: '/products/saint-sunshine',
     imageSrc: '/salve-placeholder.png',
-    imageAlt: 'Front of zip tote bag with white canvas, black canvas straps and handle, and black zipper pulls.',
-    price: '$140',
+    imageAlt: 'Saint Sunshine salve',
+    price: '$20',
   },
   // More products...
 ]
