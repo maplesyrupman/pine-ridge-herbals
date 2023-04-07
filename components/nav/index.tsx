@@ -47,7 +47,7 @@ const navigation = {
       name: 'Education',
       featured: [
         {
-          name: 'E-book',
+          name: 'eBook',
           href: '/education/e-book',
           imageSrc: '/book-in-grass.jpeg',
           imageAlt: 'Hats and sweaters on wood shelves next to various colors of t-shirts on hangers.',
@@ -62,8 +62,8 @@ const navigation = {
     },
   ],
   pages: [
-    { name: 'About', href: '#' },
-    { name: 'Contact', href: '#' },
+    { name: 'About', href: '/about' },
+    { name: 'Contact', href: '/contact' },
   ],
 }
 function classNames(...classes:string[]) {
