@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Disclosure, RadioGroup, Tab } from '@headlessui/react'
 import {
   MinusIcon,
@@ -62,13 +62,26 @@ function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Example() {
+export default function Product() {
   const [selectedVariant, setSelectedVariant] = useState(product.variants[0])
   function changeSize(value: string) {
     const variant = product.variants.find(variant => variant.size === value) || product.variants[0]
     setSelectedVariant(variant)
   }
 
+  const [testState, setTestState] = useState({})
+
+  // useEffect(() => {
+  //   (async () => {
+  //     const products = await Swell.products.list({
+  //       limit: 10, 
+  //       page: 1
+  //     })
+  //     setTestState(products)
+  //   })()
+
+  // },[])
+  console.log(testState)
   return (
     <Layout>
       <div className='pt-32'>
