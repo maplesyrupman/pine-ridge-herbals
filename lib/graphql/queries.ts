@@ -19,6 +19,34 @@ query getCategories {
   }
 `
 
+const GET_CATEGORY_PRODUCTS = gql`
+query getProductsInCategory ($category: String!) {
+  categoryBySlug(slug: $category) {
+    products (_currency: "CAD") {
+      id
+      slug
+      name
+      price
+      currency
+      images {
+        file {
+          url
+          width
+          height
+        }
+      }
+      options {
+        name
+        values {
+          name
+        }
+        
+      }
+    }
+  }
+}
+`
+
 const GET_PRODUCTS = gql`
 query getAllProducts {
     products(limit: 25, page: 1) {
@@ -80,6 +108,7 @@ query getMenus {
 
 export {
     GET_CATEGORIES, 
+    GET_CATEGORY_PRODUCTS,
     GET_PRODUCTS,
     GET_NAV
 }
