@@ -94,6 +94,34 @@ query getAllProducts {
   }
 `
 
+const GET_SINGLE_PRODUCT = gql`
+query getProductBySlug($slug:String) {
+  productBySlug(slug: $slug) {
+    id
+    name
+    description
+    slug
+    price
+    currency
+    images{
+      id
+      caption
+      file{
+        url
+        width
+        height
+      }
+    }
+    options {
+      name 
+      values{
+        name
+      }
+    }
+  }
+}
+`
+
 const GET_NAV = gql`
 query getMenus {
     menuSettings {
@@ -110,5 +138,6 @@ export {
     GET_CATEGORIES, 
     GET_CATEGORY_PRODUCTS,
     GET_PRODUCTS,
+    GET_SINGLE_PRODUCT,
     GET_NAV
 }

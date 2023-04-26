@@ -1,7 +1,6 @@
 "use client"
 import ProductsGrid from "@/components/product-grid"
 import { useEffect, useState } from 'react'
-import Layout from "@/components/layout"
 import MobileCategoryOptions from "@/components/category-options/mobile"
 import { DesktopCategoryOptions } from "@/components/category-options"
 

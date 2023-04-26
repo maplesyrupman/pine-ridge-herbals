@@ -11,6 +11,11 @@ module.exports = {
           hostname: 'tailwindui.com',
           port: '',
         },
+        {
+          protocol: 'https',
+          hostname: 'cdn.swell.store',
+          port: ''
+        }
       ],
     },
   }
