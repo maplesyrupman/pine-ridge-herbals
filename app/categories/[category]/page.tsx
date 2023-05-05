@@ -5,8 +5,10 @@ import MobileCategoryOptions from "@/components/category-options/mobile"
 import { DesktopCategoryOptions } from "@/components/category-options"
 
 import { useQuery } from "@apollo/client"
-import { GET_CATEGORY_PRODUCTS } from '@/lib/graphql/queries'
+import GET_CATEGORY_PRODUCTS from '@/graphql/queries/getCategoryProducts.graphql'
 import Spinner from "@/components/spinner"
+import { useSearchParams } from "next/navigation"
+import client from "@/graphql/client"
 
 const breadcrumbs = [{ id: 1, name: 'Men', href: '#' }]
 const filters = [
@@ -57,21 +59,51 @@ const products = [
   // More products...
 ]
 
+interface CategoryData {
+  title: string,
+  description: string
+}
+const multiCategory:CategoryData = {
+  title: 'All Products',
+  description: 'Shop all of our wild crafted products'
+}
+
+function getQueryString(collections: string[]) {
+  return collections.map(c => `title:'${c}'`).join(' OR ')
+}
+
 export default function Category() {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
 
-  // useEffect(() => {
-  //   useQuery(GET_CATEGORY_PRODUCTS, { category: 'salves' })
-  // })
-  const { data, loading, error } = useQuery(GET_CATEGORY_PRODUCTS, { variables: { category: 'salves' } })
+  const query = useSearchParams()
+  let params = new URLSearchParams(query?.toString());
+  const collections = params.get('collection')?.split(' ')
+  const queryString = getQueryString(collections as string[])
+  console.log(queryString)
+
+  const [collection, setCollection] = useState<CategoryData>(multiCategory)
+  const [products, setProducts] = useState<null|any[]>(null)
+
 
   useEffect(() => {
-    if (data) {
+    (async () => {
+      const { data } = await client.query({ query: GET_CATEGORY_PRODUCTS, variables: { query: queryString } })
       console.log(data)
-    } else if (error) {
-      console.log(error)
-    }
-  }, [data, error])
+      let allProducts: any[] = []
+      if (data.collections.nodes.length > 1) {
+        const {title, description} = data.collections.nodes[0]
+        setCollection({title, description})
+      }
+
+      data.collections.nodes.forEach((c: any) => {
+        allProducts = [...allProducts, ...c.products.nodes]
+      })
+
+      
+      setProducts(allProducts)
+    })()
+  }, [])
+
 
   return (
     <>
@@ -107,24 +139,20 @@ export default function Category() {
           </nav>
         </div> */}
 
-        <main className="mx-auto max-w-2xl px-4 lg:max-w-7xl lg:px-8">
-          <div className="border-b border-gray-200 pb-10 pt-24">
-            <h1 className="text-4xl font-bold tracking-tight text-gray-900">New Arrivals</h1>
-            <p className="mt-4 text-base text-gray-500">
-              Checkout out the latest release of Basic Tees, new and improved with four openings!
-            </p>
-          </div>
+        {!products ? <Spinner /> :
+          <main className="mx-auto max-w-2xl px-4 lg:max-w-7xl lg:px-8">
+            <div className="border-b border-gray-200 pb-10 pt-24">
+              <h1 className="text-4xl font-bold tracking-tight text-gray-900">{collection.title}</h1>
+              <p className="mt-4 text-base text-gray-500">{collection.description}</p>
+            </div>
 
-          <div className="pb-24 pt-12 lg:grid lg:grid-cols-3 lg:gap-x-8 xl:grid-cols-4">
+            <div className="pb-24 pt-12 lg:grid lg:grid-cols-3 lg:gap-x-8 xl:grid-cols-4">
 
-            <DesktopCategoryOptions mobileFiltersOpen={mobileFiltersOpen} setMobileFiltersOpen={setMobileFiltersOpen} filters={filters} />
-            {!data ?
-              <Spinner /> :
-              <ProductsGrid products={data.categoryBySlug.products} />
-            }
-
-          </div>
-        </main>
+              <DesktopCategoryOptions mobileFiltersOpen={mobileFiltersOpen} setMobileFiltersOpen={setMobileFiltersOpen} filters={filters} />
+              <ProductsGrid products={products} />
+            </div>
+          </main>
+        }
       </div>
     </>
   )

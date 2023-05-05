@@ -1,5 +1,6 @@
+"use client"
 import { useState, useEffect } from 'react'
-import { useRouter } from 'next/router'
+import { useSearchParams } from 'next/navigation'
 import { Disclosure, RadioGroup, Tab } from '@headlessui/react'
 import {
   MinusIcon,
@@ -9,8 +10,9 @@ import Layout from '@/components/layout'
 import SuggestedProducts from '@/components/suggested-products'
 import Image from 'next/image'
 import { useQuery } from '@apollo/client'
-import { GET_SINGLE_PRODUCT } from '@/lib/graphql/queries'
+import GET_SINGLE_PRODUCT from '@/graphql/queries/getSingleProduct.gql'
 import Spinner from '@/components/spinner'
+import client from '@/graphql/client'
 
 const productMOCK = {
   name: 'Power Plant Aid',
@@ -67,26 +69,26 @@ function classNames(...classes: string[]) {
 }
 
 export default function Product() {
-  const router = useRouter()
+  const query = useSearchParams()
+  const params = new URLSearchParams(query?.toString())
+  const productHandle = params?.get('product')
 
-  const { product:productSlug } = router.query
+  const {data, loading, error} = useQuery(GET_SINGLE_PRODUCT, {variables: {handle: productHandle}})
+  let product:any = null
+  if (data) {
+    product = data.product
+  }
 
-  const { data, loading, error } = useQuery(GET_SINGLE_PRODUCT, { variables: { slug: productSlug } })
-  const product = data?.productBySlug || undefined 
-
-  useEffect(() => {
-    if (data) {
-      console.log(product)
-      setSelectedVariant(product.options[0].values[0])
-    }
-    if (loading) console.log(loading)
-    if (error) console.log(error)
-  }, [data, error, loading])
-
-  const [selectedVariant, setSelectedVariant] = useState({ price: 0, name: '' })
+  const [selectedVariant, setSelectedVariant] = useState({ id: null, name: '', price: 0 })
   function changeSize(value: string) {
-    const variant = product.options[0].values.find(option => option.size === value) || product.options[0].values[0]
+    console.log(value)
+    const variant = product.variants.results.find((option: any) => option.name === value) || product.variants.results[0]
     setSelectedVariant(variant)
+  }
+
+  function addToCart(e: React.FormEvent) {
+    e.preventDefault()
+    console.log(selectedVariant)
   }
 
   return (
@@ -148,7 +150,7 @@ export default function Product() {
 
                   <div className="mt-3">
                     <h2 className="sr-only">Product information</h2>
-                    <p className="text-3xl tracking-tight text-gray-900">{selectedVariant.price}</p>
+                    <p className="text-3xl tracking-tight text-gray-900">${selectedVariant.price}</p>
                   </div>
 
                   <div className="mt-6">
@@ -160,14 +162,17 @@ export default function Product() {
                     />
                   </div>
 
-                  <form className="mt-6">
+                  <form
+                    className="mt-6"
+                    onSubmit={addToCart}
+                  >
                     <div>
                       <h3 className="text-sm text-gray-600">Size</h3>
 
-                      <RadioGroup value={selectedVariant.size} onChange={changeSize} className="mt-2">
+                      <RadioGroup value={selectedVariant.name} onChange={changeSize} className="mt-2">
                         <RadioGroup.Label className="sr-only"> Choose a size </RadioGroup.Label>
                         <div className="flex items-center space-x-3">
-                          {product.options[0].values.map(({ name }:any) => (
+                          {product.variants.results.map(({ name }: any) => (
                             <RadioGroup.Option
                               key={name}
                               value={name}
@@ -202,46 +207,49 @@ export default function Product() {
                     </h2>
 
                     <div className="divide-y divide-gray-200 border-t">
-                      {productMOCK.details.map((detail) => (
-                        <Disclosure as="div" key={detail.name}>
-                          {({ open }) => (
-                            <>
-                              <h3>
-                                <Disclosure.Button className="group relative flex w-full items-center justify-between py-6 text-left">
-                                  <span
-                                    className={classNames(
-                                      open ? 'text-primary' : 'text-gray-900',
-                                      'text-sm font-medium'
-                                    )}
-                                  >
-                                    {detail.name}
-                                  </span>
-                                  <span className="ml-6 flex items-center">
-                                    {open ? (
-                                      <MinusIcon
-                                        className="block h-6 w-6 text-indigo-400 group-hover:text-indigo-500"
-                                        aria-hidden="true"
-                                      />
-                                    ) : (
-                                      <PlusIcon
-                                        className="block h-6 w-6 text-gray-400 group-hover:text-gray-500"
-                                        aria-hidden="true"
-                                      />
-                                    )}
-                                  </span>
-                                </Disclosure.Button>
-                              </h3>
-                              <Disclosure.Panel as="div" className="prose prose-sm pb-6">
-                                <ul role="list">
-                                  {detail.items.map((item) => (
-                                    <li key={item}>{item}</li>
-                                  ))}
-                                </ul>
-                              </Disclosure.Panel>
-                            </>
-                          )}
-                        </Disclosure>
-                      ))}
+                      {Object.keys(product.attributes).map((key) => {
+                        const detail = product.attributes[key]
+                        return (
+                          <Disclosure as="div" key={detail.name}>
+                            {({ open }) => (
+                              <>
+                                <h3>
+                                  <Disclosure.Button className="group relative flex w-full items-center justify-between py-6 text-left">
+                                    <span
+                                      className={classNames(
+                                        open ? 'text-primary' : 'text-gray-900',
+                                        'text-sm font-medium'
+                                      )}
+                                    >
+                                      {detail.name}
+                                    </span>
+                                    <span className="ml-6 flex items-center">
+                                      {open ? (
+                                        <MinusIcon
+                                          className="block h-6 w-6 text-indigo-400 group-hover:text-indigo-500"
+                                          aria-hidden="true"
+                                        />
+                                      ) : (
+                                        <PlusIcon
+                                          className="block h-6 w-6 text-gray-400 group-hover:text-gray-500"
+                                          aria-hidden="true"
+                                        />
+                                      )}
+                                    </span>
+                                  </Disclosure.Button>
+                                </h3>
+                                <Disclosure.Panel as="div" className="prose prose-sm pb-6">
+                                  <ul role="list">
+                                    {detail.value.split(',').map((item:string) => (
+                                      <li key={item.trim()}>{item.trim()}</li>
+                                    ))}
+                                  </ul>
+                                </Disclosure.Panel>
+                              </>
+                            )}
+                          </Disclosure>
+                        )
+                      })}
                     </div>
                   </section>
                 </div>

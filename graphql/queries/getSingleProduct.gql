@@ -1,0 +1,28 @@
+query getSingleProduct ($handle: String!) {
+  product(handle: $handle) {
+    id
+    title
+    description
+    images(first: 10) {
+      nodes {
+        id
+        height
+        width
+        url
+        altText
+      }
+    }
+    tags
+    totalInventory
+    variants(first: 10) {
+      nodes {
+        id
+        title
+        quantityAvailable
+        price {
+          amount
+        }
+      }
+    }
+  }
+}

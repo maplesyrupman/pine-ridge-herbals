@@ -1,0 +1,38 @@
+query productsByCollections ($query: String!) {
+  collections(first: 10, query: $query) {
+    nodes {
+      title
+      description
+      handle
+      id
+      products(first: 10) {
+        nodes {
+          description
+          handle
+          id
+          featuredImage {
+            altText
+            height
+            id
+            url
+            width
+          }
+          priceRange {
+            minVariantPrice {
+              amount
+            }
+          }
+          variants(first: 10) {
+            nodes {
+              id
+              price {
+                amount
+              }
+              title
+            }
+          }
+        }
+      }
+    }
+  }
+}
