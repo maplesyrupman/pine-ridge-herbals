@@ -1,8 +1,14 @@
 overwrite: true
-schema: "schema.graphql"
-documents: "./graphql/**/*.graphql"
+schema:
+  - https://pine-ridge-herbals.myshopify.com/api/2023-04/graphql.json:
+      headers:
+        X-Shopify-Storefront-Access-Token: 'e83388255878832df27b720de1b3dad8'
+documents: 'graphql/**/*.gql'
 generates:
-  src/generated/graphql.ts:
+  generated/graphql.tsx:
     plugins:
-      - "typescript"
-      - "typescript-operations"
+      - typescript
+      - typescript-operations
+      - typescript-react-apollo
+    config:
+      withHooks: true

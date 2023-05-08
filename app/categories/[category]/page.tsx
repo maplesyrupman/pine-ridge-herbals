@@ -3,12 +3,10 @@ import ProductsGrid from "@/components/product-grid"
 import { useEffect, useState } from 'react'
 import MobileCategoryOptions from "@/components/category-options/mobile"
 import { DesktopCategoryOptions } from "@/components/category-options"
-
-import { useQuery } from "@apollo/client"
-import GET_CATEGORY_PRODUCTS from '@/graphql/queries/getCategoryProducts.graphql'
+import GET_CATEGORY_PRODUCTS from '@/graphql/queries/getCategoryProducts.gql'
 import Spinner from "@/components/spinner"
 import { useSearchParams } from "next/navigation"
-import client from "@/graphql/client"
+import client from "@/lib/apollo//client"
 
 const breadcrumbs = [{ id: 1, name: 'Men', href: '#' }]
 const filters = [

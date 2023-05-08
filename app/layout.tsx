@@ -1,6 +1,6 @@
-import "@/globals.css"
+import "../globals.css"
 // import { ApolloProvider } from "@apollo/client"
-import client from "@/graphql/client"
+import client from "@/lib/apollo/client"
 // import { CartProvider } from "@/lib/cartContext"
 import ApolloProvider from '../lib/apollo/ApolloProvider'
 import Nav from "@/components/nav"

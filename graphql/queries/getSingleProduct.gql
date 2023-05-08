@@ -4,12 +4,14 @@ query getSingleProduct ($handle: String!) {
     title
     description
     images(first: 10) {
-      nodes {
-        id
-        height
-        width
-        url
-        altText
+      edges {
+        node {
+          id
+          height
+          width
+          url
+          altText
+        }
       }
     }
     tags
@@ -23,6 +25,10 @@ query getSingleProduct ($handle: String!) {
           amount
         }
       }
+    }
+    ingredients: metafield(key: "ingredients", namespace: "custom") {
+      id
+      value
     }
   }
 }

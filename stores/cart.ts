@@ -1,56 +1,38 @@
-import {create} from 'zustand';
+import { create } from 'zustand';
 import { isStockLimited } from '@/lib/utils/products';
 // import { NOTIFICATION_TYPE } from 'types/shared/notification';
-// import { API_ROUTES } from 'types/shared/api';
-import type { CartProps, CartItemProps, CartData, CartItemInput } from '@/types/shared/cart';
-// import { getI18n } from 'hooks/useI18n';
-
-export interface AddToCartConfig {
-  showCartAfter?: boolean;
-  data?: {
-    variant?: {
-      name: string;
-    };
-  };
-}
+import { Cart, CartFragFragment } from 'generated/graphql'
 
 interface CartState {
-  cart: CartProps;
+  cart: CartFragFragment | null;
+  visible: boolean;
   showCart: () => void;
   hideCart: () => void;
   getCart: () => Promise<void>;
-  addToCart: (input: CartItemInput, config?: AddToCartConfig) => Promise<void>;
+  addToCart: (input: LineItemInput) => Promise<void>;
   removeItem: (itemId: string) => Promise<void>;
   updateItem: (itemId: string, input: any) => Promise<void>; //changed input to type any, was previously SwellCartItemInput 
 }
 
+interface LineItemInput {
+  itemId: string,
+  quantity: number,
+  cartId: string,
+}
+
 const useCartStore = create<CartState>((set, get) => ({
-  cart: {
-    total: 0,
-    items: [],
-    visible: false,
-    empty: true,
-    setVisible: (visible: boolean) =>
-      set((state) => ({ cart: { ...state.cart, visible } })),
-    checkoutUrl: '#',
-  },
-  showCart: () => set((state) => ({ cart: { ...state.cart, visible: true } })),
-  hideCart: () => set((state) => ({ cart: { ...state.cart, visible: false } })),
+  cart: null,
+  visible: false,
+  showCart: () => set((state) => ({ visible: true })),
+  hideCart: () => set((state) => ({ visible: false })),
   getCart: async () => {
     try {
+      
       const res = await fetch(API_ROUTES.CART);
 
       const cart = (await res.json()) as CartData;
 
-      set((state) => ({
-        cart: {
-          ...state.cart,
-          total: cart.data.total,
-          items: cart.data.items,
-          checkoutUrl: cart.data.checkoutUrl,
-          empty: !cart.data.items.length,
-        },
-      }));
+
     } catch (error) {
       console.error(error);
     }

@@ -2,9 +2,8 @@ import { Transition, Popover } from "@headlessui/react"
 import { ShoppingBagIcon } from "@heroicons/react/24/outline"
 import { Fragment, useEffect } from "react"
 import { useQuery } from "@apollo/client"
-import {GET_CART } from "@/graphql/queries"
+
 import create from "zustand"
-import { CartItemProps, CartProps } from "@/types/shared/cart"
 
 const products = [
     {
@@ -26,20 +25,7 @@ const products = [
     // More products...
 ]
 
-export default function Cart({
-    visible, 
-    setVisible, 
-    total, 
-    items,
-    empty,
-    checkoutUrl
-}:CartProps) {
-    const {data, loading, error} = useQuery(GET_CART)
-
-    useEffect(() => {
-        if (data) console.log(data)
-        if (error) console.log(error)
-    },[data,error])
+export default function Cart() {
 
     return (
         <Popover className="ml-4 flow-root text-sm lg:relative lg:ml-8">

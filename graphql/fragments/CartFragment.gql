@@ -1,0 +1,32 @@
+fragment CartFrag on Cart {
+    id
+    cost {
+      subtotalAmount {
+        amount
+      }
+    }
+    lines(first: 10) {
+      edges {
+        node {
+          id
+          quantity
+          merchandise {
+            ... on ProductVariant {
+              id
+              title
+              product {
+                id
+                title
+                featuredImage {
+                  width
+                  height
+                  altText
+                  url
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+}

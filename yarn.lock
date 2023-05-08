@@ -572,6 +572,27 @@
     "@graphql-tools/utils" "^9.1.1"
     tslib "~2.5.0"
 
+"@graphql-codegen/introspection@^3.0.1":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@graphql-codegen/introspection/-/introspection-3.0.1.tgz#403c9bb12abf998a3bd37a519eb0fd01b537d64d"
+  integrity sha512-D6vJQTEL/np4EmeUHm5spLK59cr+AMXEoLRoTI+dagFzlHYDTfXZH6F7uhKaakxcj0SAQhIWKvGMggotUdEtyg==
+  dependencies:
+    "@graphql-codegen/plugin-helpers" "^4.1.0"
+    "@graphql-codegen/visitor-plugin-common" "^3.0.1"
+    tslib "~2.5.0"
+
+"@graphql-codegen/plugin-helpers@^2.7.2":
+  version "2.7.2"
+  resolved "https://registry.npmjs.org/@graphql-codegen/plugin-helpers/-/plugin-helpers-2.7.2.tgz"
+  integrity sha512-kln2AZ12uii6U59OQXdjLk5nOlh1pHis1R98cDZGFnfaiAbX9V3fxcZ1MMJkB7qFUymTALzyjZoXXdyVmPMfRg==
+  dependencies:
+    "@graphql-tools/utils" "^8.8.0"
+    change-case-all "1.0.14"
+    common-tags "1.8.2"
+    import-from "4.0.0"
+    lodash "~4.17.0"
+    tslib "~2.4.0"
+
 "@graphql-codegen/plugin-helpers@^4.1.0", "@graphql-codegen/plugin-helpers@^4.2.0":
   version "4.2.0"
   resolved "https://registry.npmjs.org/@graphql-codegen/plugin-helpers/-/plugin-helpers-4.2.0.tgz"
@@ -604,6 +625,17 @@
     auto-bind "~4.0.0"
     tslib "~2.5.0"
 
+"@graphql-codegen/typescript-react-apollo@^3.3.7":
+  version "3.3.7"
+  resolved "https://registry.npmjs.org/@graphql-codegen/typescript-react-apollo/-/typescript-react-apollo-3.3.7.tgz"
+  integrity sha512-9DUiGE8rcwwEkf/S1kpBT/Py/UUs9Qak14bOnTT1JHWs1MWhiDA7vml+A8opU7YFI1EVbSSaE5jjRv11WHoikQ==
+  dependencies:
+    "@graphql-codegen/plugin-helpers" "^2.7.2"
+    "@graphql-codegen/visitor-plugin-common" "2.13.1"
+    auto-bind "~4.0.0"
+    change-case-all "1.0.14"
+    tslib "~2.4.0"
+
 "@graphql-codegen/typescript@^3.0.4":
   version "3.0.4"
   resolved "https://registry.npmjs.org/@graphql-codegen/typescript/-/typescript-3.0.4.tgz"
@@ -615,7 +647,23 @@
     auto-bind "~4.0.0"
     tslib "~2.5.0"
 
-"@graphql-codegen/visitor-plugin-common@3.1.1":
+"@graphql-codegen/visitor-plugin-common@2.13.1":
+  version "2.13.1"
+  resolved "https://registry.npmjs.org/@graphql-codegen/visitor-plugin-common/-/visitor-plugin-common-2.13.1.tgz"
+  integrity sha512-mD9ufZhDGhyrSaWQGrU1Q1c5f01TeWtSWy/cDwXYjJcHIj1Y/DG2x0tOflEfCvh5WcnmHNIw4lzDsg1W7iFJEg==
+  dependencies:
+    "@graphql-codegen/plugin-helpers" "^2.7.2"
+    "@graphql-tools/optimize" "^1.3.0"
+    "@graphql-tools/relay-operation-optimizer" "^6.5.0"
+    "@graphql-tools/utils" "^8.8.0"
+    auto-bind "~4.0.0"
+    change-case-all "1.0.14"
+    dependency-graph "^0.11.0"
+    graphql-tag "^2.11.0"
+    parse-filepath "^1.0.2"
+    tslib "~2.4.0"
+
+"@graphql-codegen/visitor-plugin-common@3.1.1", "@graphql-codegen/visitor-plugin-common@^3.0.1":
   version "3.1.1"
   resolved "https://registry.npmjs.org/@graphql-codegen/visitor-plugin-common/-/visitor-plugin-common-3.1.1.tgz"
   integrity sha512-uAfp+zu/009R3HUAuTK2AamR1bxIltM6rrYYI6EXSmkM3rFtFsLTuJhjUDj98HcUCszJZrADppz8KKLGRUVlNg==
@@ -877,6 +925,13 @@
     tslib "^2.4.0"
     value-or-promise "^1.0.11"
     ws "^8.12.0"
+
+"@graphql-tools/utils@^8.8.0":
+  version "8.13.1"
+  resolved "https://registry.npmjs.org/@graphql-tools/utils/-/utils-8.13.1.tgz"
+  integrity sha512-qIh9yYpdUFmctVqovwMdheVNJqFh+DQNWIhX87FJStfXYnmweBUDATok9fWPleKeFwxnW8IapKmY8m8toJEkAw==
+  dependencies:
+    tslib "^2.4.0"
 
 "@graphql-tools/utils@^9.0.0", "@graphql-tools/utils@^9.1.1", "@graphql-tools/utils@^9.2.1":
   version "9.2.1"
@@ -1506,6 +1561,22 @@ chalk@^4.0.0, chalk@^4.1.0, chalk@^4.1.1:
     ansi-styles "^4.1.0"
     supports-color "^7.1.0"
 
+change-case-all@1.0.14:
+  version "1.0.14"
+  resolved "https://registry.npmjs.org/change-case-all/-/change-case-all-1.0.14.tgz"
+  integrity sha512-CWVm2uT7dmSHdO/z1CXT/n47mWonyypzBbuCy5tN7uMg22BsfkhwT6oHmFCAk+gL1LOOxhdbB9SZz3J1KTY3gA==
+  dependencies:
+    change-case "^4.1.2"
+    is-lower-case "^2.0.2"
+    is-upper-case "^2.0.2"
+    lower-case "^2.0.2"
+    lower-case-first "^2.0.2"
+    sponge-case "^1.0.1"
+    swap-case "^2.0.2"
+    title-case "^3.0.3"
+    upper-case "^2.0.2"
+    upper-case-first "^2.0.2"
+
 change-case-all@1.0.15:
   version "1.0.15"
   resolved "https://registry.npmjs.org/change-case-all/-/change-case-all-1.0.15.tgz"
@@ -1809,7 +1880,7 @@ emoji-regex@^8.0.0:
 
 enhanced-resolve@^5.7.0:
   version "5.13.0"
-  resolved "https://registry.yarnpkg.com/enhanced-resolve/-/enhanced-resolve-5.13.0.tgz#26d1ecc448c02de997133217b5c1053f34a0a275"
+  resolved "https://registry.npmjs.org/enhanced-resolve/-/enhanced-resolve-5.13.0.tgz"
   integrity sha512-eyV8f0y1+bzyfh8xAwW/WTSZpLbjhqc4ne9eGSH4Zo2ejdyiNG9pU6mf9DG8a7+Auk6MFTlNOT4Y2y/9k8GKVg==
   dependencies:
     graceful-fs "^4.2.4"
@@ -2005,7 +2076,7 @@ globby@^11.0.3:
 
 graceful-fs@^4.2.4:
   version "4.2.11"
-  resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.11.tgz#4183e4e8bf08bb6e05bbb2f7d2e0c8f712ca40e3"
+  resolved "https://registry.npmjs.org/graceful-fs/-/graceful-fs-4.2.11.tgz"
   integrity sha512-RbJ5/jmFcNNCcDV5o9eTnBLJ/HszWV0P73bc+Ff4nS/rJj+YaS6IGyiOL0VoBYX+l1Wrl3k63h/KrH+nhJ0XvQ==
 
 graphql-config@^4.5.0:
@@ -3169,7 +3240,7 @@ strip-ansi@^6.0.0, strip-ansi@^6.0.1:
 
 strip-bom@^3.0.0:
   version "3.0.0"
-  resolved "https://registry.yarnpkg.com/strip-bom/-/strip-bom-3.0.0.tgz#2334c18e9c759f7bdd56fdef7e9ae3d588e68ed3"
+  resolved "https://registry.npmjs.org/strip-bom/-/strip-bom-3.0.0.tgz"
   integrity sha512-vavAMRXOgBVNF6nyEEmL3DBK19iRpDcoIwW+swQ+CbGiu7lju6t+JklA1MHweoWtadgt4ISVUsXLyDq34ddcwA==
 
 styled-jsx@5.1.1:
@@ -3241,7 +3312,7 @@ tailwindcss@^3.2.7:
 
 tapable@^2.2.0:
   version "2.2.1"
-  resolved "https://registry.yarnpkg.com/tapable/-/tapable-2.2.1.tgz#1967a73ef4060a82f12ab96af86d52fdb76eeca0"
+  resolved "https://registry.npmjs.org/tapable/-/tapable-2.2.1.tgz"
   integrity sha512-GNzQvQTOIP6RyTfE2Qxb8ZVlNmw0n88vp1szwWRimP02mnTsx3Wtn5qRdqY9w2XduFNUgvOwhNnQsjwCp+kqaQ==
 
 through@^2.3.6, through@^2.3.8:
@@ -3294,7 +3365,7 @@ ts-log@^2.2.3:
 
 tsconfig-paths-webpack-plugin@^4.0.1:
   version "4.0.1"
-  resolved "https://registry.yarnpkg.com/tsconfig-paths-webpack-plugin/-/tsconfig-paths-webpack-plugin-4.0.1.tgz#a24651d0f69668a1abad38d3c2489855c257460d"
+  resolved "https://registry.npmjs.org/tsconfig-paths-webpack-plugin/-/tsconfig-paths-webpack-plugin-4.0.1.tgz"
   integrity sha512-m5//KzLoKmqu2MVix+dgLKq70MnFi8YL8sdzQZ6DblmCdfuq/y3OqvJd5vMndg2KEVCOeNz8Es4WVZhYInteLw==
   dependencies:
     chalk "^4.1.0"
@@ -3303,7 +3374,7 @@ tsconfig-paths-webpack-plugin@^4.0.1:
 
 tsconfig-paths@^4.1.2:
   version "4.2.0"
-  resolved "https://registry.yarnpkg.com/tsconfig-paths/-/tsconfig-paths-4.2.0.tgz#ef78e19039133446d244beac0fd6a1632e2d107c"
+  resolved "https://registry.npmjs.org/tsconfig-paths/-/tsconfig-paths-4.2.0.tgz"
   integrity sha512-NoZ4roiN7LnbKn9QqE1amc9DJfzvZXxF4xDavcOWt1BPkdx+m+0gJuPM+S0vCe7zTJMYUP0R8pO2XMr+Y8oLIg==
   dependencies:
     json5 "^2.2.2"
@@ -3314,6 +3385,11 @@ tslib@^2.0.0, tslib@^2.0.3, tslib@^2.1.0, tslib@^2.3.0, tslib@^2.3.1, tslib@^2.4
   version "2.5.0"
   resolved "https://registry.npmjs.org/tslib/-/tslib-2.5.0.tgz"
   integrity sha512-336iVw3rtn2BUK7ORdIAHTyxHGRIHVReokCR3XjbckJMK7ms8FysBfhLR8IXnAgy7T0PTPNBWKiH514FOW/WSg==
+
+tslib@~2.4.0:
+  version "2.4.1"
+  resolved "https://registry.npmjs.org/tslib/-/tslib-2.4.1.tgz"
+  integrity sha512-tGyy4dAjRIEwI7BzsB0lynWgOpfqjUdq91XXAlIWD2OwKBH7oCl/GZG/HT4BOHrTlPMOASlMQ7veyTqpmRcrNA==
 
 type-fest@^0.21.3:
   version "0.21.3"

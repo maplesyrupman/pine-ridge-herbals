@@ -1,0 +1,7 @@
+mutation UpdateCartLineItem($cartId: ID!, $lineId: ID!, $quantity: Int!) {
+  cartLinesUpdate(cartId: $cartId, lines: {id: $lineId, quantity: $quantity}) {
+    cart {
+        ...CartFrag
+    }
+  }
+}
