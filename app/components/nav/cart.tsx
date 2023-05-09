@@ -1,9 +1,10 @@
+"use client"
+
 import { Transition, Popover } from "@headlessui/react"
 import { ShoppingBagIcon } from "@heroicons/react/24/outline"
 import { Fragment, useEffect } from "react"
-import { useQuery } from "@apollo/client"
-
-import create from "zustand"
+import useCartStore from "stores/cart"
+import Image from "next/image"
 
 const products = [
     {
@@ -26,6 +27,22 @@ const products = [
 ]
 
 export default function Cart() {
+    const cartId = localStorage.getItem('cartId')
+    const setCartId = useCartStore(state => state)
+    const cart = useCartStore(state => state.cart)
+    const getCart = useCartStore(state => state.getCart)
+
+    useEffect(() => {
+        console.log(cart)
+        if (cart) {
+            localStorage.setItem('cartId', cart.id)
+        } else {
+            const cartId = localStorage.getItem('cartId')
+            if (cartId) {
+                getCart(cartId)
+            }
+        }
+    }, [cart])
 
     return (
         <Popover className="ml-4 flow-root text-sm lg:relative lg:ml-8">
@@ -34,7 +51,7 @@ export default function Cart() {
                     className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
                     aria-hidden="true"
                 />
-                <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">0</span>
+                <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">{cart?.lines.edges.length}</span>
                 <span className="sr-only">items in cart, view bag</span>
             </Popover.Button>
             <Transition
@@ -51,18 +68,20 @@ export default function Cart() {
 
                     <form className="mx-auto max-w-2xl px-4">
                         <ul role="list" className="divide-y divide-gray-200">
-                            {products.map((product) => (
-                                <li key={product.id} className="flex items-center py-6">
-                                    <img
-                                        src={product.imageSrc}
-                                        alt={product.imageAlt}
+                            {cart?.lines.edges && cart.lines.edges.map(({node}) => (
+                                <li key={node.id} className="flex items-center py-6">
+                                    <Image
+                                        src={node.merchandise.product.featuredImage?.url as string}
+                                        alt={node.merchandise.product.featuredImage?.altText || 'product'}
+                                        width={node.merchandise.product.featuredImage?.width as number}
+                                        height={node.merchandise.product.featuredImage?.height as number}
                                         className="h-16 w-16 flex-none rounded-md border border-gray-200"
                                     />
                                     <div className="ml-4 flex-auto">
                                         <h3 className="font-medium text-gray-900">
-                                            <a href={product.href}>{product.name}</a>
+                                            <a href={'#'}>{node.merchandise.product.title}</a>
                                         </h3>
-                                        <p className="text-gray-500">{product.size}</p>
+                                        <p className="text-gray-500">{node.merchandise.title}</p>
                                     </div>
                                 </li>
                             ))}

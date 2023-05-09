@@ -26,6 +26,7 @@ const QuantityInput = ({ quantity, setQuantity }: Props) => {
       <button
         className="bg-gray-200 text-gray-700 w-6 h-6 rounded-full flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-gray-300"
         onClick={decrement}
+        type='button'
       >
         -
       </button>
@@ -39,6 +40,7 @@ const QuantityInput = ({ quantity, setQuantity }: Props) => {
       <button
         className="bg-gray-200 text-gray-700 w-6 h-6 rounded-full flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-gray-300"
         onClick={increment}
+        type='button'
       >
         +
       </button>

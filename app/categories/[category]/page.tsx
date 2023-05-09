@@ -75,6 +75,7 @@ export default function Category() {
 
   const query = useSearchParams()
   let params = new URLSearchParams(query?.toString());
+  console.log('params',params.get('collection'))
   const collections = params.get('collection')?.split(' ')
   const queryString = getQueryString(collections as string[])
   console.log(queryString)

@@ -1,4 +1,4 @@
-#import CartFrag from '../fragments/CartFragment.gql'
+#import '../fragments/CartFragment.gql'
 
 query GetCart($cartId: ID!) {
   cart(id: $cartId) {
