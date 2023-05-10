@@ -6,6 +6,8 @@ import client from '@/lib/apollo/client';
 import GetCart from '@/graphql/queries/getCart.gql'
 import AddCartLineItem from '@/graphql/mutations/addCartLineItem.gql'
 import CreateCart from '@/graphql/mutations/createCart.gql'
+import DeleteCartLineItem from "@/graphql/mutations/deleteCartLineItem.gql"
+import UpdateCartLineItem from "@/graphql/mutations/updateCartLineItem.gql"
 
 interface CartState {
   cart: CartFragFragment | null;
@@ -17,12 +19,6 @@ interface CartState {
   addToCart: (merchandiseId: string, quantity: number) => Promise<void>;
   removeItem: (itemId: string) => Promise<void>;
   updateItem: (itemId: string, input: any) => Promise<void>; //changed input to type any, was previously SwellCartItemInput 
-}
-
-interface LineItemInput {
-  merchandiseId: string,
-  quantity: number,
-  cartId: string,
 }
 
 const useCartStore = create<CartState>((set, get) => ({
@@ -45,13 +41,13 @@ const useCartStore = create<CartState>((set, get) => ({
   addToCart: async (merchandiseId: string, quantity: number) => {
     try {
       if (!merchandiseId || quantity <= 0) return;
-      const cartId = get().cartId
+      const cartId = localStorage.getItem('cartId')
       console.log(cartId)
       console.log(merchandiseId)
       console.log(quantity)
       if (cartId != "null") {
         const { data } = await client.mutate({ mutation: AddCartLineItem, variables: { cartId, merchandiseId, quantity } })
-        set(state => ({ ...state, cart: data.cartCreate.cart }))
+        set(state => ({ ...state, cart: data.cartLinesAdd.cart }))
       } else {
         const { data } = await client.mutate({ mutation: CreateCart, variables: { quantity, merchandiseId } })
         console.log(data)
@@ -82,55 +78,24 @@ const useCartStore = create<CartState>((set, get) => ({
       console.error(error);
     }
   },
-  removeItem: async (itemId) => {
-    // try {
-    //   const res = await fetch(API_ROUTES.CART_ITEMS, {
-    //     method: 'DELETE',
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //     },
-    //     body: JSON.stringify({ itemId }),
-    //   });
-
-    //   const cart = (await res.json()) as CartData;
-
-    //   set((state) => ({
-    //     cart: {
-    //       ...state.cart,
-    //       total: cart.data.total,
-    //       items: cart.data.items,
-    //       checkoutUrl: cart.data.checkoutUrl,
-    //       empty: !cart.data.items.length,
-    //     },
-    //   }));
-    // } catch (error) {
-    //   console.error(error);
-    // }
+  removeItem: async (lineId) => {
+    try {
+      const cartId = get().cart?.id
+      const {data} = await client.mutate({mutation: DeleteCartLineItem, variables: {cartId ,lineId}})
+      set(state => ({...state, cart: data.cartLinesRemove.cart}))
+    } catch (error) {
+      console.error(error);
+    }
   },
-  updateItem: async (itemId, input) => {
-    // try {
-    //   const res = await fetch(API_ROUTES.CART_ITEMS, {
-    //     method: 'PUT',
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //     },
-    //     body: JSON.stringify({ itemId, input }),
-    //   });
-
-    //   const cart = (await res.json()) as CartData;
-
-    //   set((state) => ({
-    //     cart: {
-    //       ...state.cart,
-    //       total: cart.data.total,
-    //       items: cart.data.items,
-    //       checkoutUrl: cart.data.checkoutUrl,
-    //       empty: !cart.data.items.length,
-    //     },
-    //   }));
-    // } catch (error) {
-    //   console.error(error);
-    // }
+  updateItem: async (lineId, quantity) => {
+    try {
+      const cartId = get().cart?.id
+      const {data, errors} = await client.mutate({mutation: UpdateCartLineItem, variables: {cartId, lineId, quantity}})
+      console.log(errors)
+      set(state => ({...state, cart: data.cartLinesUpdate.cart}))
+    } catch (error) {
+      console.error(error);
+    }
   },
 }));
 

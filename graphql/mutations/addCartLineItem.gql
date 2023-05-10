@@ -1,7 +1,7 @@
 #import '../fragments/CartFragment.gql'
 
-mutation AddCartLine($cartId: ID!, $variantId: ID!, $quantity: Int!) {
-  cartLinesAdd(cartId: $cartId, lines: [{ merchandiseId: $variantId, quantity: $quantity }]) {
+mutation AddCartLine($cartId: ID!, $merchandiseId: ID!, $quantity: Int!) {
+  cartLinesAdd(cartId: $cartId, lines: [{ merchandiseId: $merchandiseId, quantity: $quantity }]) {
     cart {
         ...CartFrag
     }

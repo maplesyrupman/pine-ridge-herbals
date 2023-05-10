@@ -3,28 +3,9 @@
 import { Transition, Popover } from "@headlessui/react"
 import { ShoppingBagIcon } from "@heroicons/react/24/outline"
 import { Fragment, useEffect } from "react"
-import useCartStore from "stores/cart"
+import useCartStore from "@/stores/cart"
 import Image from "next/image"
-
-const products = [
-    {
-        id: 1,
-        name: 'Saint Sunshine',
-        href: '/products/saint-sunshine',
-        size: '9oz',
-        imageSrc: '/salve-placeholder.png',
-        imageAlt: 'Saint Sunshine salve',
-    },
-    {
-        id: 2,
-        name: 'Peppermint Oil',
-        href: '/products/pepermint-oil',
-        size: '4oz',
-        imageSrc: '/oil-placeholder.jpeg',
-        imageAlt: 'Pepermint Oil extract',
-    },
-    // More products...
-]
+import Link from "next/link"
 
 export default function Cart() {
     const cartId = localStorage.getItem('cartId')
@@ -88,16 +69,16 @@ export default function Cart() {
                         </ul>
 
                         <button
-                            type="submit"
+                            type="button"
                             className="w-full rounded-md border border-transparent bg-primary px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50"
                         >
                             Checkout
                         </button>
 
                         <p className="mt-6 text-center">
-                            <a href="#" className="text-sm font-medium text-primary hover:text-indigo-500">
+                            <Link href="/checkout" className="text-sm font-medium text-primary hover:text-indigo-500">
                                 View Shopping Bag
-                            </a>
+                            </Link>
                         </p>
                     </form>
                 </Popover.Panel>

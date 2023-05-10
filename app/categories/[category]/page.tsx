@@ -5,10 +5,8 @@ import MobileCategoryOptions from "@/components/category-options/mobile"
 import { DesktopCategoryOptions } from "@/components/category-options"
 import GET_CATEGORY_PRODUCTS from '@/graphql/queries/getCategoryProducts.gql'
 import Spinner from "@/components/spinner"
-import { useSearchParams } from "next/navigation"
 import client from "@/lib/apollo//client"
 
-const breadcrumbs = [{ id: 1, name: 'Men', href: '#' }]
 const filters = [
   {
     id: 'category',
@@ -70,13 +68,10 @@ function getQueryString(collections: string[]) {
   return collections.map(c => `title:'${c}'`).join(' OR ')
 }
 
-export default function Category() {
+export default function Category(context:any) {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
 
-  const query = useSearchParams()
-  let params = new URLSearchParams(query?.toString());
-  console.log('params',params.get('collection'))
-  const collections = params.get('collection')?.split(' ')
+  const collections = context.searchParams.collections.split(' ')
   const queryString = getQueryString(collections as string[])
   console.log(queryString)
 
@@ -106,7 +101,7 @@ export default function Category() {
 
   return (
     <>
-      <div className='pt-12' >
+      <div>
         {/* Mobile filter dialog */}
         <MobileCategoryOptions
           filters={filters}

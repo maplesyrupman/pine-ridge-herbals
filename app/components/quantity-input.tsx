@@ -10,8 +10,18 @@ const QuantityInput = ({ quantity, setQuantity }: Props) => {
 
   const handleChange = (e: any) => {
     const newQ = Number(e.target.value)
-    setQuantity(newQ >= 0 ? newQ : 0);
+    if (newQ) {
+      setQuantity(newQ)
+    }
   };
+
+  function correctQuantity() {
+    if (quantity < 0) {
+      setQuantity(1)
+    } else if (quantity > 8) {
+      setQuantity(8)
+    }
+  }
 
   function increment() {
     setQuantity(quantity => quantity + 1)
@@ -34,6 +44,7 @@ const QuantityInput = ({ quantity, setQuantity }: Props) => {
         type="number"
         value={quantity}
         onChange={handleChange}
+        onBlur={correctQuantity}
         className="w-20 text-center border rounded border-gray-200 focus:border-gray-300 focus:ring-1 focus:ring-gray-200  mx-2"
         style={{ WebkitAppearance: 'textfield', MozAppearance: 'textfield' }}
       />

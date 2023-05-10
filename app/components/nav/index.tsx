@@ -20,25 +20,25 @@ const navigation = {
       featured: [
         {
           name: 'Salves',
-          href: '/categories/salves',
+          href: 'salves',
           imageSrc: '/salve-placeholder.png',
           imageAlt: 'Salve container',
         },
         {
           name: 'Oils',
-          href: '/categories/oils',
+          href: 'oils',
           imageSrc: '/oil-placeholder.jpeg',
           imageAlt: 'Close up of Basic Tee fall bundle with off-white, ochre, olive, and black tees.',
         },
         {
           name: 'Tea',
-          href: '/categories/teas',
+          href: 'teas',
           imageSrc: '/tea-placeholder.jpeg',
           imageAlt: 'Model wearing minimalist watch with black wristband and white watch face.',
         },
         {
           name: 'Seasonal',
-          href: '/categories/seasonal',
+          href: 'seasonal',
           imageSrc: '/seasonal-placeholder.jpeg',
           imageAlt: 'Model opening tan leather long wallet with credit card pockets and cash pouch.',
         },
@@ -178,7 +178,7 @@ export default function Nav() {
                     </div>
                   ))}
                 </div>
-
+{/* 
                 <div className="space-y-6 border-t border-gray-200 py-6 px-4">
                   <div className="flow-root">
                     <Link href="#" className="-m-2 block p-2 font-medium text-gray-900">
@@ -193,7 +193,6 @@ export default function Nav() {
                 </div>
 
                 <div className="space-y-6 border-t border-gray-200 py-6 px-4">
-                  {/* Currency selector */}
                   <form>
                     <div className="inline-block">
                       <label htmlFor="mobile-currency" className="sr-only">
@@ -215,7 +214,7 @@ export default function Nav() {
                       </div>
                     </div>
                   </form>
-                </div>
+                </div> */}
               </Dialog.Panel>
             </Transition.Child>
           </div>
@@ -225,9 +224,8 @@ export default function Nav() {
       <header className="relative">
         <nav aria-label="Top">
           {/* Top navigation */}
-          <div className="bg-gray-900">
+          {/* <div className="bg-gray-900">
             <div className="mx-auto flex h-10 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-              {/* Currency selector */}
               <form>
                 <div>
                   <label htmlFor="desktop-currency" className="sr-only">
@@ -259,7 +257,7 @@ export default function Nav() {
                 </Link>
               </div>
             </div>
-          </div>
+          </div> */}
 
           {/* Secondary navigation */}
           <div className="bg-background">
@@ -323,10 +321,10 @@ export default function Nav() {
                                                   width={500}
                                                 />
                                               </div>
-                                              <a href={item.href} className="mt-4 block font-medium text-gray-900">
+                                              <Link href={`/categories/q?collections=${item.href}`} className="mt-4 block font-medium text-gray-900">
                                                 <span className="absolute inset-0 z-40" aria-hidden="true" />
                                                 {item.name}
-                                              </a>
+                                              </Link>
                                               <p aria-hidden="true" className="mt-1">
                                                 Shop now
                                               </p>

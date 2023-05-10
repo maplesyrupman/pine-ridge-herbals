@@ -23,7 +23,8 @@
     "paths": {
       "@/components/*": ["app/components/*"],
       "@/graphql/*":["graphql/*"],
-      "@/lib/*":["lib/*"]
+      "@/lib/*":["lib/*"],
+      "@/stores/*":["stores/*"]
     },
     "typeRoots": ["./node_modules/@types", "./types"]
   },

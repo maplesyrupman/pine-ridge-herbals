@@ -34,7 +34,7 @@ function classNames(...classes: string[]) {
     return classes.filter(Boolean).join(' ')
 }
 
-export default function Product(context) {
+export default function Product(context:any) {
     const productHandle = context.params.product
     console.log(context)
     
@@ -64,7 +64,7 @@ export default function Product(context) {
     }
 
     return (
-        <div className='pt-32'>
+        <div>
             {selectedVariant ?
                 <main className="mx-auto max-w-7xl sm:px-6 sm:pt-16 lg:px-8">
                     <div className="mx-auto max-w-2xl lg:max-w-none">
@@ -183,7 +183,7 @@ export default function Product(context) {
                                     </h2>
 
                                     <div className="divide-y divide-gray-200 border-t">
-                                        {(() => {
+                                        {data?.product?.ingredients && (() => {
                                             const ingredients = JSON.parse(data?.product?.ingredients?.value as string)
 
                                             return (

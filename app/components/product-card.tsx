@@ -31,7 +31,7 @@ interface Props {
 }
 
 export default function ProductCard({ product }:Props) {
-
+    console.log(product)
     return (
         <div
             key={product.id}
@@ -48,14 +48,14 @@ export default function ProductCard({ product }:Props) {
             </div>
             <div className="flex flex-1 flex-col space-y-2 p-4">
                 <h3 className="text-sm font-medium text-gray-900">
-                    <Link href={`/products/q?product=${product.handle}`}>
+                    <Link href={`/products/${product.handle}`}>
                         <span aria-hidden="true" className="absolute inset-0" />
                         {product.title}
                     </Link>
                 </h3>
                 <p className="text-sm text-gray-500">{product.description}</p>
                 <div className="flex flex-1 flex-col justify-end">
-                    <p className="text-sm italic text-gray-500">{product.variants.nodes.length} {product.variants.nodes[0].title}s</p>
+                    <p className="text-sm italic text-gray-500">{product.variants.nodes.length} sizes</p>
                     <p className="text-base font-medium text-gray-900">${product.priceRange.minVariantPrice.amount}</p>
                 </div>
             </div>
