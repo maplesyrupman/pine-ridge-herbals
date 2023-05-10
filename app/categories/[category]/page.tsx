@@ -6,6 +6,7 @@ import { DesktopCategoryOptions } from "@/components/category-options"
 import GET_CATEGORY_PRODUCTS from '@/graphql/queries/getCategoryProducts.gql'
 import Spinner from "@/components/spinner"
 import client from "@/lib/apollo//client"
+import { useRouter } from "next/router"
 
 const filters = [
   {
@@ -31,30 +32,6 @@ const filters = [
   },
 ]
 
-const products = [
-  {
-    id: 1,
-    name: 'Power Pland Aid',
-    href: '/products/power-plant-aid',
-    price: '$20',
-    description: 'Plantain healing salve.',
-    options: '2 sizes',
-    imageSrc: '/salve-placeholder.png',
-    imageAlt: 'place holder',
-  },
-  {
-    id: 2,
-    name: 'Saint Sunshine',
-    href: '/products/saint-sunshine',
-    price: '$20',
-    description: 'St John\'s wort moisturizing salve.',
-    options: '2 sizes',
-    imageSrc: '/salve-placeholder.png',
-    imageAlt: 'place holder',
-  },
-  // More products...
-]
-
 interface CategoryData {
   title: string,
   description: string
@@ -71,13 +48,12 @@ function getQueryString(collections: string[]) {
 export default function Category(context:any) {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
 
-  const collections = context.searchParams.collections.split(' ')
+  const collections = context.searchParams.collections.split(' ') as string[]
   const queryString = getQueryString(collections as string[])
   console.log(queryString)
 
   const [collection, setCollection] = useState<CategoryData>(multiCategory)
   const [products, setProducts] = useState<null|any[]>(null)
-
 
   useEffect(() => {
     (async () => {
@@ -92,11 +68,9 @@ export default function Category(context:any) {
       data.collections.nodes.forEach((c: any) => {
         allProducts = [...allProducts, ...c.products.nodes]
       })
-
-      
       setProducts(allProducts)
     })()
-  }, [])
+  })
 
 
   return (
@@ -133,7 +107,7 @@ export default function Category(context:any) {
           </nav>
         </div> */}
 
-        {!products ? <Spinner /> :
+        {!products ? <div className="h-20 w-full flex justify-center align-center"><Spinner /></div> :
           <main className="mx-auto max-w-2xl px-4 lg:max-w-7xl lg:px-8">
             <div className="border-b border-gray-200 pb-10 pt-24">
               <h1 className="text-4xl font-bold tracking-tight text-gray-900">{collection.title}</h1>

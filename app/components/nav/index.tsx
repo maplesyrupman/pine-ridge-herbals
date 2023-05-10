@@ -284,7 +284,7 @@ export default function Nav() {
                       <div className="flex h-full justify-center space-x-8">
                         {navigation.categories.map((category) => (
                           <Popover key={category.name} className="flex">
-                            {({ open }) => (
+                            {({ open, close }) => (
                               <>
                                 <div className="relative flex">
                                   <Popover.Button
@@ -321,7 +321,7 @@ export default function Nav() {
                                                   width={500}
                                                 />
                                               </div>
-                                              <Link href={`/categories/q?collections=${item.href}`} className="mt-4 block font-medium text-gray-900">
+                                              <Link href={`/categories/q?collections=${item.href}`} className="mt-4 block font-medium text-gray-900" onClick={() => close()}>
                                                 <span className="absolute inset-0 z-40" aria-hidden="true" />
                                                 {item.name}
                                               </Link>
@@ -384,19 +384,19 @@ export default function Nav() {
                   </Link>
 
                   <div className="flex flex-1 items-center justify-end">
-                    <Link href="#" className="hidden text-sm font-medium text-gray-700 hover:text-gray-800 lg:block">
+                    {/* <Link href="#" className="hidden text-sm font-medium text-gray-700 hover:text-gray-800 lg:block">
                       Search
-                    </Link>
+                    </Link> */}
 
                     <div className="flex items-center lg:ml-8">
                       {/* Help */}
-                      <Link href="#" className="p-2 text-gray-400 hover:text-gray-500 lg:hidden">
+                      {/* <Link href="#" className="p-2 text-gray-400 hover:text-gray-500 lg:hidden">
                         <span className="sr-only">Help</span>
                         <QuestionMarkCircleIcon className="h-6 w-6" aria-hidden="true" />
                       </Link>
                       <Link href="#" className="hidden text-sm font-medium text-gray-700 hover:text-gray-800 lg:block">
                         Help
-                      </Link>
+                      </Link> */}
 
                       {/* Cart */}
                       <div className="ml-4 flow-root lg:ml-8">

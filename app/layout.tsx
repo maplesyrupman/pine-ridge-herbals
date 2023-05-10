@@ -14,9 +14,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <body>
                 <ApolloProvider>
                     <Nav />
-                    <div className="pt-24">
-                        {children}
-                    </div>
+
+                    {children}
+
                     <Footer />
                 </ApolloProvider>
             </body>

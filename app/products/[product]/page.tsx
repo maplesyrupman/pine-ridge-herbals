@@ -1,6 +1,5 @@
 "use client"
 import { useState, useEffect } from 'react'
-import { useSearchParams } from 'next/navigation'
 import { Disclosure, RadioGroup, Tab } from '@headlessui/react'
 import {
     MinusIcon,
@@ -64,7 +63,7 @@ export default function Product(context:any) {
     }
 
     return (
-        <div>
+        <div className="pt-24">
             {selectedVariant ?
                 <main className="mx-auto max-w-7xl sm:px-6 sm:pt-16 lg:px-8">
                     <div className="mx-auto max-w-2xl lg:max-w-none">
@@ -236,7 +235,7 @@ export default function Product(context:any) {
                     </div>
                 </main>
                 :
-                <Spinner />
+                <div className="h-20 w-full flex justify-center align-center"><Spinner /></div>
             }
         </div>
     )
