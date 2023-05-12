@@ -77,7 +77,7 @@ export default function Product(context:any) {
                                         {data?.product?.images.edges.map(({ node }) => (
                                             <Tab
                                                 key={node.id}
-                                                className="relative flex h-24 cursor-pointer items-center justify-center rounded-md bg-background text-sm font-medium uppercase text-gray-900 hover:bg-gray-50 focus:outline-none focus:ring focus:ring-opacity-50 focus:ring-offset-4"
+                                                className="relative flex h-24 cursor-pointer items-center justify-center rounded-md bg-secondary-light text-sm font-medium uppercase text-gray-900 hover:bg-gray-50 focus:outline-none focus:ring focus:ring-opacity-50 focus:ring-offset-4"
                                             >
                                                 {({ selected }) => (
                                                     <>
@@ -87,7 +87,7 @@ export default function Product(context:any) {
                                                         </span>
                                                         <span
                                                             className={classNames(
-                                                                selected ? 'ring-indigo-500' : 'ring-transparent',
+                                                                selected ? 'ring-primary' : 'ring-transparent',
                                                                 'pointer-events-none absolute inset-0 rounded-md ring-2 ring-offset-2'
                                                             )}
                                                             aria-hidden="true"
@@ -169,7 +169,7 @@ export default function Product(context:any) {
 
                                         <button
                                             type="submit"
-                                            className="flex max-w-xs flex-1 items-center justify-center rounded-md border border-transparent bg-primary px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50 sm:w-full"
+                                            className="flex max-w-xs flex-1 items-center justify-center rounded-md border border-transparent bg-primary px-8 py-3 text-base font-medium text-white hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-gray-50 sm:w-full"
                                         >
                                             Add to bag
                                         </button>
@@ -202,7 +202,7 @@ export default function Product(context:any) {
                                                                     <span className="ml-6 flex items-center">
                                                                         {open ? (
                                                                             <MinusIcon
-                                                                                className="block h-6 w-6 text-indigo-400 group-hover:text-indigo-500"
+                                                                                className="block h-6 w-6 text-primary group-hover:text-primary-dark"
                                                                                 aria-hidden="true"
                                                                             />
                                                                         ) : (

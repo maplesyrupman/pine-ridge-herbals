@@ -35,7 +35,7 @@ export default function ProductCard({ product }:Props) {
     return (
         <div
             key={product.id}
-            className="group relative flex flex-col overflow-hidden rounded-lg border border-gray-200 bg-background"
+            className="group relative flex flex-col overflow-hidden rounded-lg border border-gray-200 bg-secondary-light"
         >
             <div className="aspect-w-3 aspect-h-4 bg-gray-200 group-hover:opacity-75 sm:aspect-none sm:h-96">
                 <Image

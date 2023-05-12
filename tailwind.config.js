@@ -8,9 +8,15 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: 'rgb(var(--colour-primary))',
-        "primary-light": 'rgb(var(--colour-primary-light))',
-        background: 'rgb(var(--colour-background))'
+        'primary': {
+          light: 'rgb(var(--colour-primary-light))',
+          DEFAULT: 'rgb(var(--colour-primary))',
+          dark: 'rgb(var(--colour-primary-dark))'
+        },
+        'secondary': {
+          'light': 'rgb(var(--colour-secondary-light))',
+          DEFAULT: 'rgb(var(--colour-secondary))'
+        }
       }
     },
   },

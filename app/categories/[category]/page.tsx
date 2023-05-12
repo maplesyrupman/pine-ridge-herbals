@@ -6,7 +6,6 @@ import { DesktopCategoryOptions } from "@/components/category-options"
 import GET_CATEGORY_PRODUCTS from '@/graphql/queries/getCategoryProducts.gql'
 import Spinner from "@/components/spinner"
 import client from "@/lib/apollo//client"
-import { useRouter } from "next/router"
 
 const filters = [
   {

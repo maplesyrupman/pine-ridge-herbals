@@ -88,9 +88,9 @@ const navigation = {
     ],
 }
 
-export default function Example() {
+export default function Footer() {
     return (
-        <footer className="bg-primary-light" aria-labelledby="footer-heading">
+        <footer className="bg-primary-dark" aria-labelledby="footer-heading">
             <h2 id="footer-heading" className="sr-only">
                 Footer
             </h2>
@@ -98,7 +98,7 @@ export default function Example() {
                 <div className="xl:grid xl:grid-cols-3 xl:gap-8">
 
                     <div className="pb-10 xl:mt-0">{/* flex flex-col items-center */}
-                        <h3 className="text-sm font-semibold leading-6 text-primary">Subscribe to our newsletter</h3>
+                        <h3 className="text-sm font-semibold leading-6 text-secondary">Subscribe to our newsletter</h3>
                         <p className="mt-2 text-sm leading-6 text-white">
                             The latest news, articles, and resources, sent to your inbox weekly.
                         </p>
@@ -112,13 +112,13 @@ export default function Example() {
                                 id="email-address"
                                 autoComplete="email"
                                 required
-                                className="w-full min-w-0 appearance-none rounded-md border-0 bg-background px-3 py-1.5 text-base text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary sm:w-64 sm:text-sm sm:leading-6 xl:w-full"
+                                className="w-full min-w-0 appearance-none rounded-md border-0 bg-secondary-light px-3 py-1.5 text-base text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary sm:w-64 sm:text-sm sm:leading-6 xl:w-full"
                                 placeholder="Enter your email"
                             />
                             <div className="mt-4 sm:mt-0 sm:ml-4 sm:flex-shrink-0">
                                 <button
                                     type="submit"
-                                    className="flex w-full items-center justify-center rounded-md bg-primary py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                                    className="flex w-full items-center justify-center rounded-md bg-primary py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-primary-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
                                 >
                                     Subscribe
                                 </button>
@@ -129,11 +129,11 @@ export default function Example() {
                     <div className="grid grid-cols-2 gap-8 xl:col-span-2">
                         <div className="md:grid md:grid-cols-2 md:gap-8">
                             <div>
-                                <h3 className="text-sm font-semibold leading-6 text-primary">Solutions</h3>
+                                <h3 className="text-sm font-semibold leading-6 text-secondary">Solutions</h3>
                                 <ul role="list" className="mt-6 space-y-4">
                                     {navigation.solutions.map((item) => (
                                         <li key={item.name}>
-                                            <a href={item.href} className="text-sm leading-6 text-white hover:text-primary">
+                                            <a href={item.href} className="text-sm leading-6 text-white hover:text-secondary">
                                                 {item.name}
                                             </a>
                                         </li>
@@ -141,11 +141,11 @@ export default function Example() {
                                 </ul>
                             </div>
                             <div className="mt-10 md:mt-0">
-                                <h3 className="text-sm font-semibold leading-6 text-primary">Support</h3>
+                                <h3 className="text-sm font-semibold leading-6 text-secondary">Support</h3>
                                 <ul role="list" className="mt-6 space-y-4">
                                     {navigation.support.map((item) => (
                                         <li key={item.name}>
-                                            <a href={item.href} className="text-sm leading-6 text-white hover:text-primary">
+                                            <a href={item.href} className="text-sm leading-6 text-white hover:text-secondary">
                                                 {item.name}
                                             </a>
                                         </li>
@@ -155,11 +155,11 @@ export default function Example() {
                         </div>
                         <div className="md:grid md:grid-cols-2 md:gap-8">
                             <div>
-                                <h3 className="text-sm font-semibold leading-6 text-primary">Company</h3>
+                                <h3 className="text-sm font-semibold leading-6 text-secondary">Company</h3>
                                 <ul role="list" className="mt-6 space-y-4">
                                     {navigation.company.map((item) => (
                                         <li key={item.name}>
-                                            <a href={item.href} className="text-sm leading-6 text-white hover:text-primary">
+                                            <a href={item.href} className="text-sm leading-6 text-white hover:text-secondary">
                                                 {item.name}
                                             </a>
                                         </li>
@@ -167,11 +167,11 @@ export default function Example() {
                                 </ul>
                             </div>
                             <div className="mt-10 md:mt-0">
-                                <h3 className="text-sm font-semibold leading-6 text-primary">Legal</h3>
+                                <h3 className="text-sm font-semibold leading-6 text-secondary">Legal</h3>
                                 <ul role="list" className="mt-6 space-y-4">
                                     {navigation.legal.map((item) => (
                                         <li key={item.name}>
-                                            <a href={item.href} className="text-sm leading-6 text-white hover:text-primary">
+                                            <a href={item.href} className="text-sm leading-6 text-white hover:text-secondary">
                                                 {item.name}
                                             </a>
                                         </li>
@@ -185,7 +185,7 @@ export default function Example() {
                 <div className="mt-16 border-t border-primary/10 pt-8 sm:mt-20 md:flex md:items-center md:justify-between lg:mt-24">
                     <div className="flex space-x-6 md:order-2">
                         {navigation.social.map((item) => (
-                            <a key={item.name} href={item.href} className="text-primary hover:text-primary-light">
+                            <a key={item.name} href={item.href} className="text-secondary hover:text-secondary-light">
                                 <span className="sr-only">{item.name}</span>
                                 <item.icon className="h-6 w-6" aria-hidden="true" />
                             </a>

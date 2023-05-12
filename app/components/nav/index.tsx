@@ -75,7 +75,7 @@ export default function Nav() {
   const [open, setOpen] = useState(false)
 
   return (
-    <div className="bg-background fixed top-0 z-[10] w-full">
+    <div className="bg-primary-dark fixed top-0 z-[10] w-full">
       {/* Mobile menu */}
       <Transition.Root show={open} as={Fragment} >
         <Dialog as="div" className="relative z-[11] lg:hidden" onClose={setOpen}>
@@ -101,11 +101,11 @@ export default function Nav() {
               leaveFrom="translate-x-0"
               leaveTo="-translate-x-full"
             >
-              <Dialog.Panel className="relative flex w-full max-w-xs flex-col overflow-y-auto bg-background pb-12 shadow-xl">
+              <Dialog.Panel className="relative flex w-full max-w-xs flex-col overflow-y-auto bg-secondary-light pb-12 shadow-xl">
                 <div className="flex px-4 pt-5 pb-2">
                   <button
                     type="button"
-                    className="-m-2 inline-flex items-center justify-center rounded-md p-2 text-primary"
+                    className="-m-2 inline-flex items-center justify-center rounded-md p-2 text-primary-dark"
                     onClick={() => setOpen(false)}
                   >
                     <span className="sr-only">Close menu</span>
@@ -122,7 +122,7 @@ export default function Nav() {
 
                           className={({ selected }) =>
                             classNames(
-                              selected ? 'border-primary text-primary' : 'border-transparent text-gray-900',
+                              selected ? 'border-primary-dark text-primary-dark' : 'border-transparent text-gray-900',
                               'flex-1 whitespace-nowrap border-b-2 py-4 px-1 text-base font-medium'
                             )
                           }
@@ -130,12 +130,11 @@ export default function Nav() {
                           Store 
                         </Tab>
 
-
                         <Tab
 
                           className={({ selected }) =>
                             classNames(
-                              selected ? 'border-primary text-primary' : 'border-transparent text-gray-900',
+                              selected ? 'border-primary-dark text-primary-dark' : 'border-transparent text-gray-900',
                               'flex-1 whitespace-nowrap border-b-2 py-4 px-1 text-base font-medium'
                             )
                           }
@@ -147,18 +146,21 @@ export default function Nav() {
                   </div>
                   <Tab.Panels as={Fragment}>
                     {navigation.categories.map((category) => (
-                      <Tab.Panel key={category.name} className="space-y-12 px-4 py-6">
+                      <Tab.Panel 
+                      key={category.name} 
+                      className="space-y-12 px-4 py-6" 
+                      >
                         <div className="grid grid-cols-2 gap-x-4 gap-y-10">
                           {category.featured.map((item) => (
-                            <div key={item.name} className="group relative">
-                              <div className="aspect-w-1 aspect-h-1 overflow-hidden rounded-md bg-gray-100 group-hover:opacity-75">
+                            <div key={item.name} className="group relative" onClick={() => setOpen(false)}>
+                              <div className="aspect-w-1 aspect-h-1 overflow-hidden rounded-md bg-secondary-light group-hover:opacity-75">
                                 <Image src={item.imageSrc} alt={item.imageAlt} className="object-cover object-center" height={100} width={100} />
                               </div>
-                              <Link href={item.href} className="mt-6 block text-sm font-medium text-gray-900">
+                              <Link href={`/categories/q?collections=${item.href}`} className="mt-6 block text-sm font-bold text-primary-dark">
                                 <span className="absolute inset-0 z-90" aria-hidden="true" />
                                 {item.name}
                               </Link>
-                              <p aria-hidden="true" className="mt-1 text-sm text-gray-500">
+                              <p aria-hidden="true" className="mt-1 text-sm text-primary">
                                 Shop now
                               </p>
                             </div>
@@ -260,9 +262,9 @@ export default function Nav() {
           </div> */}
 
           {/* Secondary navigation */}
-          <div className="bg-background">
+          <div className="bg-primary-dark">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-              <div className="border-b border-gray-200">
+              <div className="">
                 <div className="flex h-16 items-center justify-between">
                   {/* Logo (lg+) */}
                   <div className="hidden lg:flex lg:flex-1 lg:items-center">
@@ -288,7 +290,7 @@ export default function Nav() {
                               <>
                                 <div className="relative flex">
                                   <Popover.Button
-                                    className={`${open ? 'border-primary text-primary':'border-transparent text-primary'} hover:border-primary relative z-40 -mb-px flex items-center border-b-2 pt-px text-sm font-medium transition-colors duration-200 ease-out focus:outline-none`}
+                                    className={`${open ? 'border-primary text-secondary':'border-transparent text-secondary'} hover:border-secondary relative z-40 -mb-px flex items-center border-b-[3px] pt-px text-md font-bold transition-colors duration-200 ease-out focus:outline-none`}
                                   >
                                     {category.name}
                                   </Popover.Button>
@@ -305,9 +307,9 @@ export default function Nav() {
                                 >
                                   <Popover.Panel className="absolute inset-x-0 top-full text-sm text-gray-500 z-40">
                                     {/* Presentational element used to render the bottom shadow, if we put the shadow on the actual panel it pokes out the top, so we use this shorter element to hide the top of the shadow */}
-                                    <div className="absolute inset-0 top-1/2 bg-background shadow" aria-hidden="true" />
+                                    <div className="absolute inset-0 top-1/2 bg-secondary-light shadow" aria-hidden="true" />
 
-                                    <div className="relative bg-background">
+                                    <div className="relative bg-secondary-light">
                                       <div className="mx-auto max-w-7xl px-8">
                                         <div className="grid grid-cols-4 gap-y-10 gap-x-8 py-16">
                                           {category.featured.map((item) => (
@@ -344,7 +346,7 @@ export default function Nav() {
                           <Link
                             key={page.name}
                             href={page.href}
-                            className="flex items-center text-sm font-medium text-primary border-b-2 border-transparent hover:border-primary"
+                            className="flex items-center text-md font-bold text-secondary border-b-[3px] border-transparent hover:border-secondary"
                           >
                             {page.name}
                           </Link>
@@ -357,18 +359,18 @@ export default function Nav() {
                   <div className="flex flex-1 items-center lg:hidden">
                     <button
                       type="button"
-                      className="-ml-2 rounded-md bg-background p-2 text-gray-400"
+                      className="-ml-2 rounded-md bg-primary-dark p-2 text-secondary"
                       onClick={() => setOpen(true)}
                     >
                       <span className="sr-only">Open menu</span>
-                      <Bars3Icon className="h-6 w-6" aria-hidden="true" />
+                      <Bars3Icon className="h-7 w-7" aria-hidden="true" />
                     </button>
 
                     {/* Search */}
-                    <Link href="#" className="ml-2 p-2 text-gray-400 hover:text-gray-500">
+                    {/* <Link href="#" className="ml-2 p-2 text-secondary-light hover:text-secondary">
                       <span className="sr-only">Search</span>
                       <MagnifyingGlassIcon className="h-6 w-6" aria-hidden="true" />
-                    </Link>
+                    </Link> */}
                   </div>
 
                   {/* Logo (lg-) */}
