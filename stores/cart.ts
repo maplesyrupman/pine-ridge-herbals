@@ -1,14 +1,9 @@
-"use client"
 import { create } from 'zustand';
 import { isStockLimited } from '@/lib/utils/products';
 // import { NOTIFICATION_TYPE } from 'types/shared/notification';
-import { AddCartLineMutationOptions, Cart, CartFragFragment, useGetCartQuery, useCreateCartMutation, useRemoveCartLineItemMutation, useUpdateCartLineItemMutation, useAddCartLineMutation } from 'generated/graphql'
+import { AddCartLineMutationOptions, Cart, CartFragFragment, useGetCartQuery } from 'generated/graphql'
 import client from '@/lib/apollo/client';
-// import GetCart from '@/graphql/queries/getCart.gql'
-// import AddCartLineItem from '@/graphql/mutations/addCartLineItem.gql'
-// import CreateCart from '@/graphql/mutations/createCart.gql'
-// import DeleteCartLineItem from "@/graphql/mutations/deleteCartLineItem.gql"
-// import UpdateCartLineItem from "@/graphql/mutations/updateCartLineItem.gql"
+import { GetCartDocument, AddCartLineDocument, CreateCartDocument, RemoveCartLineItemDocument, UpdateCartLineItemDocument } from 'generated/graphql';
 
 interface CartState {
   cart: CartFragFragment | null;
@@ -32,10 +27,8 @@ const useCartStore = create<CartState>((set, get) => ({
   getCart: async (cartId) => {
     try {
       if (cartId != 'null') {
-        const { data } = useGetCartQuery({ variables: { cartId } })
-        if (data) {
-          set(state => ({ ...state, cart: data.cart }))
-        }
+        const { data } = await client.query({ query: GetCartDocument, variables: { cartId } })
+        set(state => ({ ...state, cart: data.cart }))
       }
     } catch (error) {
       console.error(error);
@@ -48,21 +41,14 @@ const useCartStore = create<CartState>((set, get) => ({
       console.log(cartId)
       console.log(merchandiseId)
       console.log(quantity)
-      if (cartId != "null" && typeof cartId === 'string') {
-        const [addCartLine] = useAddCartLineMutation({ variables: { cartId, merchandiseId, quantity } })
-        const { data } = await addCartLine()
-        if (data?.cartLinesAdd != undefined) {
-          //@ts-ignore
-          set(state => ({ ...state, cart: data.cartLinesAdd.cart }))
-        }
-
+      if (cartId != "null") {
+        const { data } = await client.mutate({ mutation: AddCartLineDocument, variables: { cartId, merchandiseId, quantity } })
+        set(state => ({ ...state, cart: data.cartLinesAdd.cart }))
       } else {
-        const [createCart] = useCreateCartMutation({variables: { quantity, merchandiseId}})
-        const { data } = await createCart()
-        //@ts-ignore
-        const newCartId = data?.cartCreate?.cart.id
+        const { data } = await client.mutate({ mutation: CreateCartDocument, variables: { quantity, merchandiseId } })
+        console.log(data)
+        const newCartId = data.cartCreate.cart.id
         console.log(newCartId)
-        //@ts-ignore
         set(state => ({ ...state, cart: data.cartCreate.cart, id: data.cartCreate.cart.id }))
       }
 
@@ -91,11 +77,8 @@ const useCartStore = create<CartState>((set, get) => ({
   removeItem: async (lineId) => {
     try {
       const cartId = get().cart?.id
-      //@ts-ignore
-      const [deleteCartLineItem] = useRemoveCartLineItemMutation({variables: { cartId, lineId } })
-      const {data} = await deleteCartLineItem()
-      //@ts-ignore
-      set(state => ({ ...state, cart: data.cartLinesRemove.cart }))
+      const {data} = await client.mutate({mutation: RemoveCartLineItemDocument, variables: {cartId ,lineId}})
+      set(state => ({...state, cart: data.cartLinesRemove.cart}))
     } catch (error) {
       console.error(error);
     }
@@ -103,12 +86,9 @@ const useCartStore = create<CartState>((set, get) => ({
   updateItem: async (lineId, quantity) => {
     try {
       const cartId = get().cart?.id
-      //@ts-ignore
-      const [updateCartLineItem] = useUpdateCartLineItemMutation({variables: { cartId, lineId, quantity }})
-      const { data, errors } = await updateCartLineItem()
+      const {data, errors} = await client.mutate({mutation: UpdateCartLineItemDocument, variables: {cartId, lineId, quantity}})
       console.log(errors)
-      //@ts-ignore
-      set(state => ({ ...state, cart: data.cartLinesUpdate.cart }))
+      set(state => ({...state, cart: data.cartLinesUpdate.cart}))
     } catch (error) {
       console.error(error);
     }
