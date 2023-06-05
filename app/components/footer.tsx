@@ -1,27 +1,23 @@
+"use client"
+
+import React, { useState } from "react"
+import NewsletterSignupModal from "./newsletter-signup-confirm"
+
 const navigation = {
-    solutions: [
-        { name: 'Marketing', href: '#' },
-        { name: 'Analytics', href: '#' },
-        { name: 'Commerce', href: '#' },
-        { name: 'Insights', href: '#' },
+    store: [
+        { name: 'Salves', href: '#' },
+        { name: 'Oils', href: '#' },
+        { name: 'Teas', href: '#' },
+        { name: 'Seasonal', href: '#' },
     ],
-    support: [
-        { name: 'Pricing', href: '#' },
-        { name: 'Documentation', href: '#' },
-        { name: 'Guides', href: '#' },
-        { name: 'API Status', href: '#' },
+    education: [
+        { name: 'eBook', href: '#' },
+        { name: 'Course', href: '#' },
     ],
-    company: [
-        { name: 'About', href: '#' },
-        { name: 'Blog', href: '#' },
-        { name: 'Jobs', href: '#' },
-        { name: 'Press', href: '#' },
-        { name: 'Partners', href: '#' },
-    ],
-    legal: [
-        { name: 'Claim', href: '#' },
+    about: [
+        { name: 'Our Mission', href: '#' },
+        { name: 'Contact', href: '#' },
         { name: 'Privacy', href: '#' },
-        { name: 'Terms', href: '#' },
     ],
     social: [
         {
@@ -89,6 +85,14 @@ const navigation = {
 }
 
 export default function Footer() {
+    const [modalOpen, setModalOpen] = useState(false)
+
+    function handleSubmit(e: React.FormEvent) {
+        e.preventDefault()
+        e.target.reset()
+        setModalOpen(true)
+    }
+
     return (
         <footer className="bg-primary-dark" aria-labelledby="footer-heading">
             <h2 id="footer-heading" className="sr-only">
@@ -102,7 +106,10 @@ export default function Footer() {
                         <p className="mt-2 text-sm leading-6 text-white">
                             The latest news, articles, and resources, sent to your inbox weekly.
                         </p>
-                        <form className="mt-6 sm:flex sm:max-w-md">
+                        <form 
+                        className="mt-6 sm:flex sm:max-w-md"
+                        onSubmit={handleSubmit}
+                        >
                             <label htmlFor="email-address" className="sr-only">
                                 Email address
                             </label>
@@ -129,9 +136,9 @@ export default function Footer() {
                     <div className="grid grid-cols-2 gap-8 xl:col-span-2">
                         <div className="md:grid md:grid-cols-2 md:gap-8">
                             <div>
-                                <h3 className="text-sm font-semibold leading-6 text-secondary">Solutions</h3>
+                                <h3 className="text-sm font-semibold leading-6 text-secondary">Store</h3>
                                 <ul role="list" className="mt-6 space-y-4">
-                                    {navigation.solutions.map((item) => (
+                                    {navigation.store.map((item) => (
                                         <li key={item.name}>
                                             <a href={item.href} className="text-sm leading-6 text-white hover:text-secondary">
                                                 {item.name}
@@ -141,9 +148,9 @@ export default function Footer() {
                                 </ul>
                             </div>
                             <div className="mt-10 md:mt-0">
-                                <h3 className="text-sm font-semibold leading-6 text-secondary">Support</h3>
+                                <h3 className="text-sm font-semibold leading-6 text-secondary">Education</h3>
                                 <ul role="list" className="mt-6 space-y-4">
-                                    {navigation.support.map((item) => (
+                                    {navigation.education.map((item) => (
                                         <li key={item.name}>
                                             <a href={item.href} className="text-sm leading-6 text-white hover:text-secondary">
                                                 {item.name}
@@ -155,21 +162,9 @@ export default function Footer() {
                         </div>
                         <div className="md:grid md:grid-cols-2 md:gap-8">
                             <div>
-                                <h3 className="text-sm font-semibold leading-6 text-secondary">Company</h3>
+                                <h3 className="text-sm font-semibold leading-6 text-secondary">About</h3>
                                 <ul role="list" className="mt-6 space-y-4">
-                                    {navigation.company.map((item) => (
-                                        <li key={item.name}>
-                                            <a href={item.href} className="text-sm leading-6 text-white hover:text-secondary">
-                                                {item.name}
-                                            </a>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                            <div className="mt-10 md:mt-0">
-                                <h3 className="text-sm font-semibold leading-6 text-secondary">Legal</h3>
-                                <ul role="list" className="mt-6 space-y-4">
-                                    {navigation.legal.map((item) => (
+                                    {navigation.about.map((item) => (
                                         <li key={item.name}>
                                             <a href={item.href} className="text-sm leading-6 text-white hover:text-secondary">
                                                 {item.name}
@@ -196,6 +191,8 @@ export default function Footer() {
                     </p>
                 </div>
             </div>
+
+            <NewsletterSignupModal open={modalOpen} setOpen={setModalOpen} />
         </footer>
     )
 }
