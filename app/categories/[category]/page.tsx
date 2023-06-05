@@ -3,7 +3,7 @@ import ProductsGrid from "@/components/product-grid"
 import { useEffect, useState } from 'react'
 import MobileCategoryOptions from "@/components/category-options/mobile"
 import { DesktopCategoryOptions } from "@/components/category-options"
-import GET_CATEGORY_PRODUCTS from '@/graphql/queries/getCategoryProducts.gql'
+import {useProductsByCollectionsQuery} from 'generated/graphql'
 import Spinner from "@/components/spinner"
 import client from "@/lib/apollo//client"
 
@@ -56,18 +56,16 @@ export default function Category(context:any) {
 
   useEffect(() => {
     (async () => {
-      const { data } = await client.query({ query: GET_CATEGORY_PRODUCTS, variables: { query: queryString } })
-      console.log(data)
+      const { data } = useProductsByCollectionsQuery({ variables: { query: queryString } })
       let allProducts: any[] = []
-      if (data.collections.nodes.length > 1) {
+      if (data && data.collections.nodes.length > 1) {
         const {title, description} = data.collections.nodes[0]
         setCollection({title, description})
+        data.collections.nodes.forEach((c: any) => {
+          allProducts = [...allProducts, ...c.products.nodes]
+        })
+        setProducts(allProducts)
       }
-
-      data.collections.nodes.forEach((c: any) => {
-        allProducts = [...allProducts, ...c.products.nodes]
-      })
-      setProducts(allProducts)
     })()
   })
 

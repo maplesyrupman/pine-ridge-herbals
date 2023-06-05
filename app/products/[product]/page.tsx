@@ -5,7 +5,6 @@ import {
     MinusIcon,
     PlusIcon,
 } from '@heroicons/react/24/outline'
-import Layout from '@/components/layout'
 import SuggestedProducts from '@/components/suggested-products'
 import Image from 'next/image'
 // import { useQuery } from '@apollo/client'

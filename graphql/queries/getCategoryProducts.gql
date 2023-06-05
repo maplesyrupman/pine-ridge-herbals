@@ -2,6 +2,7 @@ query productsByCollections ($query: String!) {
   collections(first: 10, query: $query) {
     nodes {
       description
+      title
       handle
       id
       products(first: 10) {
