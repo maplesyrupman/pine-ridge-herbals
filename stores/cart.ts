@@ -1,3 +1,4 @@
+"use client"
 import { create } from 'zustand';
 import { isStockLimited } from '@/lib/utils/products';
 // import { NOTIFICATION_TYPE } from 'types/shared/notification';

@@ -8,10 +8,11 @@ import Image from "next/image"
 import Link from "next/link"
 
 export default function Cart() {
-    const cartId = localStorage.getItem('cartId')
-    const setCartId = useCartStore(state => state)
+    // const cartId = localStorage.getItem('cartId')
+    // const setCartId = useCartStore(state => state)
     const cart = useCartStore(state => state.cart)
     const getCart = useCartStore(state => state.getCart)
+    
 
     useEffect(() => {
         if (cart) {
