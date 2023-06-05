@@ -41,7 +41,7 @@ const useCartStore = create<CartState>((set, get) => ({
       console.log(cartId)
       console.log(merchandiseId)
       console.log(quantity)
-      if (cartId != "null") {
+      if (cartId) {
         const { data } = await client.mutate({ mutation: AddCartLineDocument, variables: { cartId, merchandiseId, quantity } })
         set(state => ({ ...state, cart: data.cartLinesAdd.cart }))
       } else {
