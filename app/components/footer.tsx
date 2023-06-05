@@ -89,6 +89,7 @@ export default function Footer() {
 
     function handleSubmit(e: React.FormEvent) {
         e.preventDefault()
+        //@ts-ignore
         e.target.reset()
         setModalOpen(true)
     }

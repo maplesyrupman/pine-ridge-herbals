@@ -7,6 +7,7 @@ export default function CTA() {
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
+    //@ts-ignore
     e.target.reset()
     setModalOpen(true)
 }
