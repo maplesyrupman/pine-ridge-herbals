@@ -3,9 +3,9 @@ import ProductsGrid from "@/components/product-grid"
 import { useEffect, useState } from 'react'
 import MobileCategoryOptions from "@/components/category-options/mobile"
 import { DesktopCategoryOptions } from "@/components/category-options"
-import GET_CATEGORY_PRODUCTS from '@/graphql/queries/getCategoryProducts.gql'
 import Spinner from "@/components/spinner"
 import client from "@/lib/apollo//client"
+import { ProductsByCollectionsDocument } from "generated/graphql"
 
 const filters = [
   {
@@ -56,7 +56,7 @@ export default function Category(context:any) {
 
   useEffect(() => {
     (async () => {
-      const { data } = await client.query({ query: GET_CATEGORY_PRODUCTS, variables: { query: queryString } })
+      const { data } = await client.query({ query: ProductsByCollectionsDocument, variables: { query: queryString } })
       console.log(data)
       let allProducts: any[] = []
       if (data.collections.nodes.length > 1) {
@@ -69,7 +69,7 @@ export default function Category(context:any) {
       })
       setProducts(allProducts)
     })()
-  })
+  }, [queryString])
 
 
   return (
