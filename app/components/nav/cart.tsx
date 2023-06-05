@@ -47,7 +47,7 @@ export default function Cart() {
                     <h2 className="sr-only">Shopping Cart</h2>
 
 
-                    {cart?.lines.edges.length > 0 ? 
+                    {cart && cart?.lines.edges.length > 0 ? 
                             <form className="mx-auto max-w-2xl x-4">
                                 <ul role="list" className="divide-y divide-primary-dark">
                                     {cart?.lines.edges && cart.lines.edges.map(({ node }) => (
