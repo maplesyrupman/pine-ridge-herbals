@@ -1,0 +1,18 @@
+{
+    "builds": [
+        {
+            "src": "package.json",
+            "use": "@vercel/node"
+        }
+    ],
+    "routes": [
+        {
+            "src": "/generate",
+            "dest": "package.json"
+        },
+        {
+            "src": ".*",
+            "dest": "/index.js"
+        }
+    ]
+}
