@@ -44,30 +44,27 @@ function getQueryString(collections: string[]) {
   return collections.map(c => `title:'${c}'`).join(' OR ')
 }
 
+
 export default function Category(context:any) {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
 
   const collections = context.searchParams.collections.split(' ') as string[]
   const queryString = getQueryString(collections as string[])
-  console.log(queryString)
 
   const [collection, setCollection] = useState<CategoryData>(multiCategory)
   const [products, setProducts] = useState<null|any[]>(null)
-
-  useEffect(() => {
-    (async () => {
-      const { data } = useProductsByCollectionsQuery({ variables: { query: queryString } })
-      let allProducts: any[] = []
-      if (data && data.collections.nodes.length > 1) {
-        const {title, description} = data.collections.nodes[0]
-        setCollection({title, description})
-        data.collections.nodes.forEach((c: any) => {
-          allProducts = [...allProducts, ...c.products.nodes]
-        })
-        setProducts(allProducts)
-      }
-    })()
-  })
+  
+  const { data } = useProductsByCollectionsQuery({ variables: { query: queryString } })
+  console.log(data)
+  let allProducts: any[] = []
+  if (data && data.collections.nodes.length > 1) {
+    const {title, description} = data.collections.nodes[0]
+    setCollection({title, description})
+    data.collections.nodes.forEach((c: any) => {
+      allProducts = [...allProducts, ...c.products.nodes]
+    })
+    setProducts(allProducts)
+  }
 
 
   return (

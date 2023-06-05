@@ -12,7 +12,6 @@ export default function Cart() {
     // const setCartId = useCartStore(state => state)
     const cart = useCartStore(state => state.cart)
     const getCart = useCartStore(state => state.getCart)
-    
 
     useEffect(() => {
         if (cart) {
