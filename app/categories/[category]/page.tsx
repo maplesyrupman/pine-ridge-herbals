@@ -3,9 +3,9 @@ import ProductsGrid from "@/components/product-grid"
 import { useEffect, useState } from 'react'
 import MobileCategoryOptions from "@/components/category-options/mobile"
 import { DesktopCategoryOptions } from "@/components/category-options"
-import {useProductsByCollectionsQuery} from 'generated/graphql'
 import Spinner from "@/components/spinner"
 import client from "@/lib/apollo//client"
+import { ProductsByCollectionsDocument } from "generated/graphql"
 
 const filters = [
   {
@@ -53,18 +53,23 @@ export default function Category(context:any) {
 
   const [collection, setCollection] = useState<CategoryData>(multiCategory)
   const [products, setProducts] = useState<null|any[]>(null)
-  
-  const { data } = useProductsByCollectionsQuery({ variables: { query: queryString } })
-  console.log(data)
-  let allProducts: any[] = []
-  if (data && data.collections.nodes.length > 1) {
-    const {title, description} = data.collections.nodes[0]
-    setCollection({title, description})
-    data.collections.nodes.forEach((c: any) => {
-      allProducts = [...allProducts, ...c.products.nodes]
-    })
-    setProducts(allProducts)
-  }
+
+  useEffect(() => {
+    (async () => {
+      const { data } = await client.query({ query: ProductsByCollectionsDocument, variables: { query: queryString } })
+      console.log(data)
+      let allProducts: any[] = []
+      if (data.collections.nodes.length > 1) {
+        const {title, description} = data.collections.nodes[0]
+        setCollection({title, description})
+      }
+
+      data.collections.nodes.forEach((c: any) => {
+        allProducts = [...allProducts, ...c.products.nodes]
+      })
+      setProducts(allProducts)
+    })()
+  }, [queryString])
 
 
   return (
