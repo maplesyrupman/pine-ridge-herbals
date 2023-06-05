@@ -9,7 +9,7 @@
     "lint": "next lint",
     "generate": "npx graphql-codegen",
     "generate:graphql": "generate",
-    "vercel-build": "yarn generate:graphql && next build",
+    "vercel-build": "yarn generate:graphql && next build"
   },
   "dependencies": {
     "@apollo/client": "^3.7.12",
