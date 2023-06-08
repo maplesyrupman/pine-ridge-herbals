@@ -15,7 +15,12 @@ module.exports = {
         protocol: 'https',
         hostname: 'cdn.shopify.com',
         port: ''
-      }
+      },
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+        port: '',
+      },
     ],
   },
   webpack: (config) => {
