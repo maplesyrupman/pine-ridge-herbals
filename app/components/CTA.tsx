@@ -1,16 +1,32 @@
 "use client"
 import { useState } from "react"
 import NewsletterSignupModal from "./newsletter-signup-confirm"
+import useFormSubmit from "@/lib/utils/handleNewsletterSignup"
 
 export default function CTA() {
   const [modalOpen, setModalOpen] = useState(false)
+  const [loading, setLoading] = useState(true)
+  const handleSubmit = useFormSubmit(setModalOpen, setLoading)
 
-  function handleSubmit(e: React.FormEvent) {
-    e.preventDefault()
-    //@ts-ignore
-    e.target.reset()
-    setModalOpen(true)
-}
+  // async function handleSubmit(e: React.FormEvent) {
+  //   e.preventDefault()
+  //   setModalOpen(true)
+  //   setLoading(true)
+  //   const form = e.target as HTMLFormElement
+  //   //@ts-ignore
+  //   const email: string = form.children[0].children[1].value
+
+  //   axios.post("/api/newsletter", { email })
+  //   .then((response:any) => {
+  //     console.log(response)
+  //     setLoading(false)
+  //   })
+
+
+
+  //   //@ts-ignore
+  //   e.target.reset()
+  // }
 
   return (
     <div className="bg-secondary-light py-16 sm:py-24 lg:py-32">
@@ -53,7 +69,7 @@ export default function CTA() {
         </form>
       </div>
 
-      <NewsletterSignupModal open={modalOpen} setOpen={setModalOpen} />
+      <NewsletterSignupModal open={modalOpen} setOpen={setModalOpen} loading={loading}/>
     </div>
   )
 }

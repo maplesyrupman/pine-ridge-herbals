@@ -1,13 +1,14 @@
 import { Fragment } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
-import { CheckIcon } from '@heroicons/react/24/outline'
+import Spinner from './loadingSpinner'
 
 interface Props {
-    open: boolean,
-    setOpen: React.Dispatch<React.SetStateAction<boolean>>
+  open: boolean,
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>,
+  loading: boolean
 }
 
-export default function NewsletterSignupModal({open, setOpen}:Props) {
+export default function NewsletterSignupModal({ open, setOpen, loading }: Props) {
 
   return (
     <Transition.Root show={open} as={Fragment}>
@@ -35,32 +36,32 @@ export default function NewsletterSignupModal({open, setOpen}:Props) {
               leaveFrom="opacity-100 translate-y-0 sm:scale-100"
               leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             >
-              <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-sm sm:p-6">
-                <div>
-                  <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-secondary">
-                    <CheckIcon className="h-6 w-6 text-white" aria-hidden="true" />
-                  </div>
-                  <div className="mt-3 text-center sm:mt-5">
-                    <Dialog.Title as="h3" className="text-base font-semibold leading-6 text-gray-900">
-                      Signup Successful
-                    </Dialog.Title>
-                    <div className="mt-2">
-                      <p className="text-sm text-gray-500">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur amet labore.
-                      </p>
+                  <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-sm sm:p-6">
+                  <div>
+                    <div className="mx-auto flex h-12 w-12 items-center justify-center">
+                      <Spinner isLoading={loading} />
+                    </div>
+                    <div className="mt-3 text-center sm:mt-5">
+                      <Dialog.Title as="h3" className="text-base font-semibold leading-6 text-gray-900">
+                        {loading ? 'Signing up...' : 'Thanks for signing up!'}
+                      </Dialog.Title>
+                      <div className="mt-2">
+                        <p className="text-sm text-gray-500">
+                          Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur amet labore.
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div className="mt-5 sm:mt-6">
-                  <button
-                    type="button"
-                    className="inline-flex w-full justify-center rounded-md bg-primary px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                    onClick={() => setOpen(false)}
-                  >
-                    Continue Shopping
-                  </button>
-                </div>
-              </Dialog.Panel>
+                  <div className="mt-5 sm:mt-6">
+                    <button
+                      type="button"
+                      className="inline-flex w-full justify-center rounded-md bg-primary px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                      onClick={() => setOpen(false)}
+                    >
+                      Continue Shopping
+                    </button>
+                  </div>
+                </Dialog.Panel>
             </Transition.Child>
           </div>
         </div>

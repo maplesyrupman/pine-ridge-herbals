@@ -2,6 +2,7 @@
 
 import React, { useState } from "react"
 import NewsletterSignupModal from "./newsletter-signup-confirm"
+import useFormSubmit from "@/lib/utils/handleNewsletterSignup"
 
 const navigation = {
     store: [
@@ -86,13 +87,8 @@ const navigation = {
 
 export default function Footer() {
     const [modalOpen, setModalOpen] = useState(false)
-
-    function handleSubmit(e: React.FormEvent) {
-        e.preventDefault()
-        //@ts-ignore
-        e.target.reset()
-        setModalOpen(true)
-    }
+    const [loading, setLoading] = useState(false)
+    const handleSubmit = useFormSubmit(setModalOpen, setLoading)
 
     return (
         <footer className="bg-primary-dark" aria-labelledby="footer-heading">
