@@ -1,7 +1,8 @@
 import { Props } from "."
 import { PlusIcon } from '@heroicons/react/20/solid'
+import CustomHerbsCTA from "../customHerbsCTA"
 
-export default function DesktopCategoryOptions({setMobileFiltersOpen, filters}:Props) {
+export default function DesktopCategoryOptions({ setMobileFiltersOpen, filters }: Props) {
 
     return (
         <aside>
@@ -18,8 +19,9 @@ export default function DesktopCategoryOptions({setMobileFiltersOpen, filters}:P
 
             <div className="hidden lg:block">
                 <form className="space-y-10 divide-y divide-gray-200">
+                    <CustomHerbsCTA />
                     {filters.map((section, sectionIdx) => (
-                        <div key={section.name} className={sectionIdx === 0 ? '' : 'pt-10'}>
+                        <div key={section.name} className={'pt-10'}>
                             <fieldset>
                                 <legend className="block text-sm font-medium text-gray-900">{section.name}</legend>
                                 <div className="space-y-3 pt-6">

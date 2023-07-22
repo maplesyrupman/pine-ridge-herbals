@@ -5,7 +5,9 @@ interface Props {
     product: {
         title: string,
         handle: string,
-        description: string,
+        short_description: {
+            value: string
+        },
         id: string,
         featuredImage: {
             altText: string,
@@ -53,7 +55,7 @@ export default function ProductCard({ product }:Props) {
                         {product.title}
                     </Link>
                 </h3>
-                <p className="text-sm text-gray-500">{product.description}</p>
+                <p className="text-sm text-gray-500">{product.short_description.value}</p>
                 <div className="flex flex-1 flex-col justify-end">
                     <p className="text-sm italic text-gray-500">{product.variants.nodes.length} sizes</p>
                     <p className="text-base font-medium text-gray-900">${product.priceRange.minVariantPrice.amount}</p>

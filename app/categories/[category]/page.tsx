@@ -6,6 +6,7 @@ import { DesktopCategoryOptions } from "@/components/category-options"
 import Spinner from "@/components/spinner"
 import client from "@/lib/apollo//client"
 import { ProductsByCollectionsDocument } from "generated/graphql"
+import CustomHerbsCTA from "@/components/customHerbsCTA"
 
 const filters = [
   {
@@ -35,7 +36,7 @@ interface CategoryData {
   title: string,
   description: string
 }
-const multiCategory:CategoryData = {
+const multiCategory: CategoryData = {
   title: 'All Products',
   description: 'Shop all of our wild crafted products'
 }
@@ -45,14 +46,14 @@ function getQueryString(collections: string[]) {
 }
 
 
-export default function Category(context:any) {
+export default function Category(context: any) {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
 
   const collections = context.searchParams.collections.split(' ') as string[]
   const queryString = getQueryString(collections as string[])
 
   const [collection, setCollection] = useState<CategoryData>(multiCategory)
-  const [products, setProducts] = useState<null|any[]>(null)
+  const [products, setProducts] = useState<null | any[]>(null)
 
   useEffect(() => {
     (async () => {
@@ -60,8 +61,8 @@ export default function Category(context:any) {
       console.log(data)
       let allProducts: any[] = []
       if (data.collections.nodes.length > 1) {
-        const {title, description} = data.collections.nodes[0]
-        setCollection({title, description})
+        const { title, description } = data.collections.nodes[0]
+        setCollection({ title, description })
       }
 
       data.collections.nodes.forEach((c: any) => {
@@ -81,45 +82,25 @@ export default function Category(context:any) {
           mobileFiltersOpen={mobileFiltersOpen}
           setMobileFiltersOpen={setMobileFiltersOpen}
         />
-        {/* bread crumbs */}
-        {/* <div className="border-b border-gray-200">
-          <nav aria-label="Breadcrumb" className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <ol role="list" className="flex items-center space-x-4 py-4">
-              {breadcrumbs.map((breadcrumb) => (
-                <li key={breadcrumb.id}>
-                  <div className="flex items-center">
-                    <a href={breadcrumb.href} className="mr-4 text-sm font-medium text-gray-900">
-                      {breadcrumb.name}
-                    </a>
-                    <svg viewBox="0 0 6 20" aria-hidden="true" className="h-5 w-auto text-gray-300">
-                      <path d="M4.878 4.34H3.551L.27 16.532h1.327l3.281-12.19z" fill="currentColor" />
-                    </svg>
-                  </div>
-                </li>
-              ))}
-              <li className="text-sm">
-                <a href="#" aria-current="page" className="font-medium text-gray-500 hover:text-gray-600">
-                  New Arrivals
-                </a>
-              </li>
-            </ol>
-          </nav>
-        </div> */}
 
-        {!products ? <div className="h-20 w-full flex justify-center align-center"><Spinner /></div> :
-          <main className="mx-auto max-w-2xl px-4 lg:max-w-7xl lg:px-8">
-            <div className="border-b border-gray-200 pb-10 pt-24">
-              <h1 className="text-4xl font-bold tracking-tight text-gray-900">{collection.title}</h1>
-              <p className="mt-4 text-base text-gray-500">{collection.description}</p>
+        <main className="mx-auto max-w-2xl px-4 lg:max-w-7xl lg:px-8">
+          <div className="border-b border-gray-200 pb-10 pt-24">
+            <h1 className="text-4xl font-bold tracking-tight text-gray-900">{collection.title}</h1>
+            <p className="mt-4 text-base text-gray-500">{collection.description}</p>
+          </div>
+
+          <div className="pb-24 pt-12 lg:grid lg:grid-cols-3 lg:gap-x-8 xl:grid-cols-4">
+
+            <DesktopCategoryOptions mobileFiltersOpen={mobileFiltersOpen} setMobileFiltersOpen={setMobileFiltersOpen} filters={filters} />
+            <div className="lg:hidden mt-3">
+              <CustomHerbsCTA />
             </div>
-
-            <div className="pb-24 pt-12 lg:grid lg:grid-cols-3 lg:gap-x-8 xl:grid-cols-4">
-
-              <DesktopCategoryOptions mobileFiltersOpen={mobileFiltersOpen} setMobileFiltersOpen={setMobileFiltersOpen} filters={filters} />
+            {!products ?
+              <div className="h-20 w-full flex justify-center align-center"><Spinner /></div> :
               <ProductsGrid products={products} />
-            </div>
-          </main>
-        }
+            }
+          </div>
+        </main>
       </div>
     </>
   )

@@ -1160,7 +1160,11 @@ export type CartLinesUpdatePayload = {
 
 /** The input fields to delete a cart metafield. */
 export type CartMetafieldDeleteInput = {
-  /** The key name of the cart metafield. */
+  /**
+   * The key name of the cart metafield. Can either be a composite key (`namespace.key`) or a simple key
+   *  that relies on the default app-reserved namespace.
+   *
+   */
   key: Scalars['String'];
   /** The ID of the cart resource. */
   ownerId: Scalars['ID'];
@@ -7711,7 +7715,7 @@ export type ProductsByCollectionsQueryVariables = Exact<{
 }>;
 
 
-export type ProductsByCollectionsQuery = { __typename?: 'QueryRoot', collections: { __typename?: 'CollectionConnection', nodes: Array<{ __typename?: 'Collection', description: string, title: string, handle: string, id: string, products: { __typename?: 'ProductConnection', nodes: Array<{ __typename?: 'Product', title: string, description: string, handle: string, id: string, featuredImage?: { __typename?: 'Image', altText?: string | null, height?: number | null, id?: string | null, url: any, width?: number | null } | null, priceRange: { __typename?: 'ProductPriceRange', minVariantPrice: { __typename?: 'MoneyV2', amount: any } }, variants: { __typename?: 'ProductVariantConnection', nodes: Array<{ __typename?: 'ProductVariant', id: string, title: string, price: { __typename?: 'MoneyV2', amount: any } }> } }> } }> } };
+export type ProductsByCollectionsQuery = { __typename?: 'QueryRoot', collections: { __typename?: 'CollectionConnection', nodes: Array<{ __typename?: 'Collection', description: string, title: string, handle: string, id: string, products: { __typename?: 'ProductConnection', nodes: Array<{ __typename?: 'Product', title: string, handle: string, id: string, short_description?: { __typename?: 'Metafield', id: string, value: string } | null, featuredImage?: { __typename?: 'Image', altText?: string | null, height?: number | null, id?: string | null, url: any, width?: number | null } | null, priceRange: { __typename?: 'ProductPriceRange', minVariantPrice: { __typename?: 'MoneyV2', amount: any } }, variants: { __typename?: 'ProductVariantConnection', nodes: Array<{ __typename?: 'ProductVariant', id: string, title: string, price: { __typename?: 'MoneyV2', amount: any } }> } }> } }> } };
 
 export type GetSingleProductQueryVariables = Exact<{
   handle: Scalars['String'];
@@ -7961,7 +7965,10 @@ export const ProductsByCollectionsDocument = gql`
       products(first: 10) {
         nodes {
           title
-          description
+          short_description: metafield(key: "short_description", namespace: "custom") {
+            id
+            value
+          }
           handle
           id
           featuredImage {

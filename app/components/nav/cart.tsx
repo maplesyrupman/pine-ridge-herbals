@@ -8,8 +8,6 @@ import Image from "next/image"
 import Link from "next/link"
 
 export default function Cart() {
-    // const cartId = localStorage.getItem('cartId')
-    // const setCartId = useCartStore(state => state)
     const cart = useCartStore(state => state.cart)
     const getCart = useCartStore(state => state.getCart)
 
@@ -73,7 +71,9 @@ export default function Cart() {
                                     type="button"
                                     className="w-full rounded-md border border-transparent bg-primary px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-gray-50"
                                 >
-                                    Checkout
+                                    <Link href={cart?.checkoutUrl}>
+                                        Checkout
+                                    </Link>
                                 </button>
 
                                 <p className="mt-6 text-center">

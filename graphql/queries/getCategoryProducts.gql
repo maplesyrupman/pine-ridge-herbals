@@ -1,4 +1,4 @@
-query productsByCollections ($query: String!) {
+query productsByCollections($query: String!) {
   collections(first: 10, query: $query) {
     nodes {
       description
@@ -8,7 +8,10 @@ query productsByCollections ($query: String!) {
       products(first: 10) {
         nodes {
           title
-          description
+          short_description: metafield(key: "short_description", namespace: "custom") {
+            id
+            value
+          }
           handle
           id
           featuredImage {

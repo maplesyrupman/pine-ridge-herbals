@@ -1,6 +1,5 @@
-import { LifebuoyIcon, NewspaperIcon, PhoneIcon, } from '@heroicons/react/20/solid'
-import {BsTreeFill} from 'react-icons/bs'
-import {FaHandSparkles, FaRecycle} from 'react-icons/fa'
+import { BsTreeFill } from 'react-icons/bs'
+import { FaHandSparkles, FaRecycle } from 'react-icons/fa'
 import Image from 'next/image'
 
 const cards = [
@@ -33,12 +32,18 @@ export default function AboutHeader() {
       />
 
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="mx-auto max-w-2xl lg:mx-0">
+        <div className="mx-auto max-w-4xl lg:mx-0">
           <h2 className="text-4xl font-bold tracking-tight text-secondary sm:text-6xl">Pine Ridge Herbals</h2>
-          <p className="mt-6 text-lg leading-8 text-gray-300">
-            Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet
-            fugiat veniam occaecat fugiat aliqua.
-          </p>
+          <div className='relative'>
+            <div className='absolute inset-0 opacity-70 bg-secondary z-10 rounded-xl' />
+            <p className="relative mt-6 text-lg leading-8 text-black z-50 opacity-100 p-6">
+              Welcome to Pine Ridge Herbals, where all our products are handcrafted and
+              wildcrafted with loving intention for you to heal. Our personalized support is tailored to
+              your unique needs using the incredible power of nature. We're firm believers in the
+              healing powers of Mother Earth, and we're committed to serving you in every way
+              possible. Let us take you on a journey back to nature!
+            </p>
+          </div>
         </div>
         <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-6 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-3 lg:gap-8">
           {cards.map((card) => (

@@ -7,7 +7,6 @@ import {
   QuestionMarkCircleIcon,
   XMarkIcon,
 } from '@heroicons/react/24/outline'
-import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import Image from 'next/image'
 import Link from 'next/link'
 import Cart from './cart'
@@ -151,12 +150,12 @@ export default function Nav() {
                       className="space-y-12 px-4 py-6" 
                       >
                         <div className="grid grid-cols-2 gap-x-4 gap-y-10">
-                          {category.featured.map((item) => (
+                          {category.featured.map((item, idx) => (
                             <div key={item.name} className="group relative" onClick={() => setOpen(false)}>
                               <div className="aspect-w-1 aspect-h-1 overflow-hidden rounded-md bg-secondary-light group-hover:opacity-75">
                                 <Image src={item.imageSrc} alt={item.imageAlt} className="object-cover object-center" height={100} width={100} />
                               </div>
-                              <Link href={`/categories/q?collections=${item.href}`} className="mt-6 block text-sm font-bold text-primary-dark">
+                              <Link href={`${idx === 0 ? "/categories/q?collections=$" : ""}${item.href}`} className="mt-6 block text-sm font-bold text-primary-dark">
                                 <span className="absolute inset-0 z-90" aria-hidden="true" />
                                 {item.name}
                               </Link>
