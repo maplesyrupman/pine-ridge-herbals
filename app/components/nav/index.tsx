@@ -283,7 +283,7 @@ export default function Nav() {
                     {/* Flyout menus */}
                     <Popover.Group className="inset-x-0 bottom-0 px-4">
                       <div className="flex h-full justify-center space-x-8">
-                        {navigation.categories.map((category) => (
+                        {navigation.categories.map((category, idx) => (
                           <Popover key={category.name} className="flex">
                             {({ open, close }) => (
                               <>
@@ -322,7 +322,7 @@ export default function Nav() {
                                                   width={500}
                                                 />
                                               </div>
-                                              <Link href={`/categories/q?collections=${item.href}`} className="mt-4 block font-medium text-gray-900" onClick={() => close()}>
+                                              <Link href={`${idx === 0 ? "/categories/q?collections=" : ""}${item.href}`} className="mt-4 block font-medium text-gray-900" onClick={() => close()}>
                                                 <span className="absolute inset-0 z-40" aria-hidden="true" />
                                                 {item.name}
                                               </Link>
