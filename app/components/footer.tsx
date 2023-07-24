@@ -189,7 +189,7 @@ export default function Footer() {
                 </div>
             </div>
 
-            <NewsletterSignupModal open={modalOpen} setOpen={setModalOpen} />
+            <NewsletterSignupModal open={modalOpen} setOpen={setModalOpen} loading={loading}/>
         </footer>
     )
 }
